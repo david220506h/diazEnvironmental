@@ -1,0 +1,347 @@
+/* FloatingContact.css */
+.floating-contact {
+  position: fixed !important;
+  bottom: 30px;
+  right: 30px;
+  z-index: 9999; 
+  display: flex;
+  flex-direction: column-reverse;
+  align-items: center;
+  pointer-events: none; 
+}
+
+.contact-toggle,
+.contact-option,
+.contact-options,
+.mobile-overlay {
+  pointer-events: auto; 
+}
+
+.contact-toggle {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background-color: #1a5f36;
+  color: white;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 24px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease;
+  position: relative;
+  z-index: 100;
+}
+
+.contact-toggle:hover,
+.contact-toggle:focus {
+  transform: scale(1.1);
+  background-color: #154a2a;
+  outline: none;
+}
+
+.contact-options {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 15px;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(20px);
+  transition: all 0.3s ease;
+}
+
+.floating-contact.open .contact-options {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.contact-option {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 12px;
+  color: white;
+  text-decoration: none;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
+  font-size: 20px;
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.floating-contact .contact-toggle,
+.floating-contact .contact-option,
+.floating-contact .contact-options {
+  z-index: 10000;
+}
+
+.contact-option:hover,
+.contact-option:focus {
+  transform: scale(1.1) translateX(-5px);
+  outline: none;
+}
+
+
+.option-label {
+  position: absolute;
+  right: 60px;
+  background-color: #333;
+  color: white;
+  padding: 5px 10px;
+  border-radius: 4px;
+  font-size: 14px;
+  white-space: nowrap;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateX(10px);
+  transition: all 0.3s ease;
+}
+
+.contact-option:hover .option-label,
+.contact-option:focus .option-label {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(0);
+}
+
+
+.phone-option {
+  background-color: #4caf50;
+}
+
+.whatsapp-option {
+  background-color: #25d366;
+}
+
+.email-option {
+  background-color: #f44336;
+}
+
+.sms-option {
+  background-color: #2196f3;
+}
+
+.facebook-option {
+  background-color: #3b5998;
+}
+
+.form-option {
+  background-color: #1a5f36;
+}
+.instagram-option {
+  background-color: #fa7e1e;
+}
+
+
+.contact-tooltip {
+  position: absolute;
+  bottom: 70px; /* Position it right above the main button */
+  right: 0;
+  background-color: #333;
+  color: white;
+  padding: 8px 15px;
+  border-radius: 5px;
+  font-size: 14px;
+  white-space: nowrap;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(10px);
+  transition: all 0.3s ease;
+}
+
+.contact-tooltip::after {
+  content: "";
+  position: absolute;
+  bottom: -8px;
+  right: 20px;
+  width: 0;
+  height: 0;
+  border-left: 8px solid transparent;
+  border-right: 8px solid transparent;
+  border-top: 8px solid #333;
+}
+
+.floating-contact:not(.open):hover .contact-tooltip {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+/* Overlay para dispositivos móviles */
+.mobile-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 990;
+  opacity: 0;
+  animation: fadeIn 0.3s forwards;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+
+.floating-contact.open .contact-option {
+  animation: slideIn 0.3s forwards;
+}
+
+.floating-contact.open .contact-option:nth-child(1) {
+  animation-delay: 0s;
+}
+
+.floating-contact.open .contact-option:nth-child(2) {
+  animation-delay: 0.05s;
+}
+
+.floating-contact.open .contact-option:nth-child(3) {
+  animation-delay: 0.1s;
+}
+
+.floating-contact.open .contact-option:nth-child(4) {
+  animation-delay: 0.15s;
+}
+
+.floating-contact.open .contact-option:nth-child(5) {
+  animation-delay: 0.2s;
+}
+
+.floating-contact.open .contact-option:nth-child(6) {
+  animation-delay: 0.25s;
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Estilos responsivos mejorados */
+@media screen and (max-width: 768px) {
+  .floating-contact {
+    bottom: 20px;
+    right: 20px;
+    position: fixed !important; /* Forzar posición fija */
+  }
+
+  .contact-toggle {
+    width: 55px;
+    height: 55px;
+    font-size: 22px;
+  }
+
+  .contact-option {
+    width: 50px;
+    height: 50px;
+    font-size: 18px;
+    margin-bottom: 10px;
+  }
+
+  .option-label {
+    font-size: 12px;
+    padding: 4px 8px;
+    right: 55px; 
+  }
+
+  .contact-options {
+    position: relative;
+  }
+  
+  /* Adjust tooltip position for mobile */
+  .contact-tooltip {
+    bottom: 65px;
+  }
+
+  /* Cuando se abre el menú en móvil, mostramos las etiquetas para facilitar el entendimiento */
+  .floating-contact.open .option-label {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(0);
+    right: 55px;
+    /* Colocamos las etiquetas a la izquierda en modo móvil */
+    position: absolute;
+    left: -85px;
+    width: 75px;
+    text-align: right;
+  }
+}
+
+/* Ajustes para dispositivos muy pequeños */
+@media screen and (max-width: 360px) {
+  .floating-contact {
+    bottom: 15px;
+    right: 15px;
+  }
+
+  .contact-toggle {
+    width: 50px;
+    height: 50px;
+    font-size: 20px;
+  }
+
+  .contact-option {
+    width: 40px;
+    height: 40px;
+    font-size: 16px;
+    margin-bottom: 8px;
+  }
+  
+  /* Adjust tooltip position for very small devices */
+  .contact-tooltip {
+    bottom: 60px;
+  }
+
+  /* Movemos las etiquetas para dispositivos muy pequeños */
+  .floating-contact.open .option-label {
+    left: -80px;
+    width: 70px;
+    font-size: 11px;
+  }
+}
+
+/* Orientación horizontal en móviles (landscape) */
+@media screen and (max-height: 500px) and (orientation: landscape) {
+  .floating-contact {
+    bottom: 15px;
+    right: 15px;
+  }
+
+  .contact-options {
+    flex-direction: row-reverse;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    width: 240px; /* Ancho fijo para controlar el diseño */
+    margin-bottom: 10px;
+  }
+
+  .contact-option {
+    margin: 5px;
+  }
+
+  /* Ajustamos la posición de las etiquetas */
+  .floating-contact.open .option-label {
+    left: auto;
+    top: -30px;
+    right: 0;
+    text-align: center;
+  }
+}

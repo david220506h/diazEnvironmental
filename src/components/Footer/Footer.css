@@ -1,0 +1,160 @@
+.footer {
+    background-color: #333;
+    color: #fff;
+    padding-top: 70px;
+  }
+  
+  .footer-content {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 40px;
+    padding-bottom: 50px;
+  }
+  
+  .footer-title {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 20px;
+    position: relative;
+    padding-bottom: 10px;
+  }
+  
+  .footer-title::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 40px;
+    height: 3px;
+    background-color: #e74c3c; /* Color principal - puedes cambiarlo */
+  }
+  
+  .about p {
+    margin-bottom: 20px;
+    line-height: 1.6;
+    color: #ccc;
+  }
+  
+  .social-icons {
+    display: flex;
+    gap: 15px;
+  }
+  
+  .social-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    color: #fff;
+    transition: all 0.3s ease;
+  }
+  
+  .social-icon:hover {
+    background-color: #e74c3c; /* Color principal - puedes cambiarlo */
+    transform: translateY(-3px);
+  }
+  
+  .footer-links {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .footer-links li {
+    margin-bottom: 12px;
+  }
+  
+  .footer-links a {
+    color: #ccc;
+    text-decoration: none;
+    transition: color 0.3s ease;
+    display: inline-block;
+    position: relative;
+  }
+  
+  .footer-links a:hover {
+    color: #fff;
+    padding-left: 5px;
+  }
+  
+  .footer-links a::before {
+    content: "›";
+    position: absolute;
+    left: -15px;
+    opacity: 0;
+    transition: all 0.3s ease;
+  }
+  
+  .footer-links a:hover::before {
+    opacity: 1;
+    left: -10px;
+  }
+  
+  .contact-info {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .contact-info li {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+    color: #ccc;
+  }
+  
+  .contact-icon {
+    margin-right: 15px;
+    color: #e74c3c; /* Color principal - puedes cambiarlo */
+  }
+  .contact-icons {
+    margin-right: 16px;
+    color: #e74c3c; /* Color principal - puedes cambiarlo */
+    width: 30px;
+    height: 30px;
+  }
+  
+  .footer-bottom {
+    background-color: #222;
+    padding: 20px 0;
+    text-align: center;
+    font-size: 0.9rem;
+    color: #999;
+  }
+  
+  @media screen and (max-width: 768px) {
+    .footer-content {
+      grid-template-columns: 1fr;
+      gap: 30px;
+    }
+    
+    .footer {
+      padding-top: 50px;
+    }
+    
+    .footer-bottom {
+      padding: 15px 0;
+    }
+  }
+  .map-container {
+    width: 100%;
+    margin-bottom: 15px;
+    overflow: hidden;
+    border-radius: 4px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  }
+  
+  .footer-section.map {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  
+  /* Para asegurar que el mapa sea responsive */
+  @media screen and (max-width: 768px) {
+    .map-container {
+      height: 180px;
+    }
+  }
+  

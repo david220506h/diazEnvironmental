@@ -1,0 +1,174 @@
+---
+interface Props {
+  title?: string;
+  description?: string;
+  canonical?: string;
+}
+
+const {
+  title = "Diaz Environmental LLC | Septic System Design & Testing Arizona",
+  description = "ADEQ-certified septic system design, soil evaluation & percolation testing in Maricopa County, AZ. Fast 3-5 day turnaround. Hablamos español. Call (602) 812-8609.",
+  canonical = "https://diazenviroaz.com",
+} = Astro.props;
+
+const schema = JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  "name": "Diaz Environmental LLC",
+  "description": "ADEQ-certified septic system design, soil evaluation, percolation testing and environmental services in Maricopa County and surrounding areas of Arizona.",
+  "telephone": "+16028128609",
+  "email": "septic@diazenviroaz.com",
+  "url": "https://diazenviroaz.com",
+  "logo": "https://diazenviroaz.com/logo.png",
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Phoenix",
+    "addressRegion": "AZ",
+    "addressCountry": "US"
+  },
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": 33.4484,
+    "longitude": -112.0740
+  },
+  "areaServed": [
+    "Maricopa County", "Pinal County", "Yavapai County", "La Paz County",
+    "Phoenix", "Scottsdale", "Mesa", "Chandler", "Gilbert",
+    "Queen Creek", "San Tan Valley", "Maricopa City",
+    "Cave Creek", "Carefree", "Anthem", "New River", "Tonopah", "Laveen",
+    "Wickenburg", "Buckeye", "Goodyear", "Avondale",
+    "Rio Verde", "Fountain Hills", "Paradise Valley",
+    "Parker", "Quartzsite", "Prescott", "Prescott Valley",
+    "All Native Nations", "Arizona"
+  ],
+  "openingHours": ["Mo-Fr 08:00-18:00", "Sa 09:00-14:00"],
+  "priceRange": "$$",
+  "hasOfferCatalog": {
+    "@type": "OfferCatalog",
+    "name": "Septic & Environmental Services",
+    "itemListElement": [
+      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Septic System Design Arizona" } },
+      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Percolation Testing Arizona" } },
+      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Soil Evaluation Arizona" } },
+      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Seepage Pit Testing Arizona" } },
+      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Septic System Inspection Arizona" } },
+      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "ADEQ Septic Permits Arizona" } }
+    ]
+  },
+  "sameAs": [
+    "https://www.instagram.com/diazenviroaz",
+    "https://www.facebook.com/diazenviroaz"
+  ]
+});
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href={canonical} />
+
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content="https://diazenviroaz.com/og-image.jpg" />
+    <meta name="geo.region" content="US-AZ" />
+    <meta name="geo.placename" content="Phoenix, Arizona" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+    <link rel="icon" type="image/png" href="/favicon.ico" />
+
+    <script type="application/ld+json" set:html={schema} />
+  </head>
+  <body>
+    <slot />
+  </body>
+</html>
+
+<style is:global>
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+  }
+
+  html, body {
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+  }
+
+  body {
+    margin-top: 80px;
+  }
+
+  section {
+    min-height: 100vh;
+    padding: 100px 0;
+  }
+
+  section#about {
+    min-height: 20vh;
+    padding: 10px 0;
+  }
+
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+
+  a {
+    text-decoration: none;
+    color: inherit;
+  }
+
+  .container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+
+  .section-title {
+    text-align: center;
+    margin-bottom: 60px;
+    font-size: 2.5rem;
+    font-weight: 700;
+    position: relative;
+  }
+
+  .section-title::after {
+    content: '';
+    position: absolute;
+    bottom: -15px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 4px;
+    background-color: #4d13d1;
+  }
+
+  .btn {
+    display: inline-block;
+    padding: 12px 28px;
+    background-color: #154a2a;
+    color: white;
+    border-radius: 5px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    border: none;
+    cursor: pointer;
+  }
+
+  .btn:hover {
+    background-color: #0d3019;
+    transform: translateY(-2px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+  }
+</style>

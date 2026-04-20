@@ -1,0 +1,142 @@
+---
+import Layout from "../layouts/Layout.astro";
+
+const faqSchema = JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "How long does a percolation test take in Arizona?",
+      "acceptedAnswer": { "@type": "Answer", "text": "At Diaz Environmental, we average 3–5 business days from soil testing to design and permit submission — one of the fastest turnarounds in Maricopa County." }
+    },
+    {
+      "@type": "Question",
+      "name": "Do I need a percolation test to build a house in Arizona?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Yes. If your property is not connected to a municipal sewer system, Arizona requires a percolation test and ADEQ-approved septic design before you can obtain a building permit." }
+    },
+    {
+      "@type": "Question",
+      "name": "What areas of Arizona do you serve?",
+      "acceptedAnswer": { "@type": "Answer", "text": "We serve all of Maricopa, Pinal, Pima, Yavapai and Coconino Counties, including Phoenix, Scottsdale, Queen Creek, San Tan Valley, Cave Creek, Anthem, New River, Wickenburg and all Native Nations." }
+    },
+    {
+      "@type": "Question",
+      "name": "How much does a septic system design cost in Arizona?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Contact us at (602) 812-8609 for a free quote. Pricing depends on lot size, soil conditions and system type required by ADEQ." }
+    },
+    {
+      "@type": "Question",
+      "name": "Do you offer services in Spanish?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Yes! We are fully bilingual. Hablamos español y ofrecemos todos nuestros servicios en español para la comunidad hispanohablante de Arizona." }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Cuánto tiempo tarda una prueba de percolación en Arizona?",
+      "acceptedAnswer": { "@type": "Answer", "text": "En Diaz Environmental, promediamos de 3 a 5 días hábiles desde la prueba de suelo hasta el diseño y envío del permiso, uno de los tiempos de respuesta más rápidos del Condado de Maricopa." }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Necesito una prueba de percolación para construir en Arizona?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Sí. Si tu propiedad no está conectada a un sistema de alcantarillado municipal, Arizona requiere una prueba de percolación y un diseño séptico aprobado por ADEQ antes de obtener un permiso de construcción." }
+    }
+  ]
+});
+---
+
+<Layout
+  title="FAQ – Septic System & Percolation Testing Arizona | Diaz Environmental"
+  description="Frequently asked questions about septic system design, percolation testing and ADEQ permits in Arizona. Bilingual service. Call (602) 812-8609."
+  canonical="https://diazenviroaz.com/faq"
+>
+  <script type="application/ld+json" set:html={faqSchema} />
+
+  <main class="faq-page">
+    <section class="faq-hero">
+      <h1>Frequently Asked Questions</h1>
+      <p>Everything you need to know about septic systems, percolation testing and ADEQ permits in Arizona.</p>
+    </section>
+
+    <section class="faq-body">
+      <h2>English FAQ</h2>
+
+      <div class="faq-item">
+        <h3>How long does a percolation test take in Arizona?</h3>
+        <p>At Diaz Environmental, we average 3–5 business days from soil testing to design and permit submission — one of the fastest turnarounds in Maricopa County. We own our own excavation equipment which eliminates subcontractor delays.</p>
+      </div>
+
+      <div class="faq-item">
+        <h3>Do I need a percolation test to build a house in Arizona?</h3>
+        <p>Yes. If your property is not connected to a municipal sewer system, Arizona requires a percolation test and ADEQ-approved septic design before you can get a building permit. This applies to most rural and semi-rural areas in Maricopa, Pinal, Pima, Yavapai and Coconino Counties.</p>
+      </div>
+
+      <div class="faq-item">
+        <h3>What areas of Arizona do you serve?</h3>
+        <p>We serve all of Maricopa, Pinal, Pima, Yavapai and Coconino Counties — including Phoenix, Scottsdale, Mesa, Chandler, Gilbert, Queen Creek, San Tan Valley, Cave Creek, Anthem, New River, Wickenburg, Buckeye, Goodyear, Fountain Hills, Rio Verde and all Native Nations.</p>
+      </div>
+
+      <div class="faq-item">
+        <h3>What is included in your septic system design service?</h3>
+        <p>Our full service includes site evaluation, soil testing, percolation testing, ADEQ-compliant system design, and permit submission to your county. We do all of this in-house with our own equipment — no subcontractors needed.</p>
+      </div>
+
+      <div class="faq-item">
+        <h3>Do you offer services in Spanish?</h3>
+        <p>Yes — we are fully bilingual. We serve Arizona's Spanish-speaking community with the same level of expertise and professionalism in both languages.</p>
+      </div>
+
+      <div class="faq-item">
+        <h3>How much does a septic system design cost?</h3>
+        <p>Pricing depends on lot size, soil conditions and the type of system required by ADEQ. Contact us at <a href="tel:6028128609">(602) 812-8609</a> for a free quote — we respond the same day.</p>
+      </div>
+
+      <hr class="faq-divider" />
+      <h2>Preguntas Frecuentes en Español</h2>
+
+      <div class="faq-item">
+        <h3>¿Cuánto tiempo tarda una prueba de percolación en Arizona?</h3>
+        <p>En Diaz Environmental, promediamos de 3 a 5 días hábiles desde la prueba de suelo hasta el envío del permiso. Contamos con nuestro propio equipo de excavación, lo que elimina las demoras de subcontratistas.</p>
+      </div>
+
+      <div class="faq-item">
+        <h3>¿Necesito una prueba de percolación para construir una casa en Arizona?</h3>
+        <p>Sí. Si tu propiedad no está conectada al sistema de alcantarillado municipal, Arizona requiere una prueba de percolación y un diseño séptico aprobado por ADEQ antes de obtener un permiso de construcción.</p>
+      </div>
+
+      <div class="faq-item">
+        <h3>¿Qué áreas de Arizona atienden?</h3>
+        <p>Atendemos todos los condados de Maricopa, Pinal, Pima, Yavapai y Coconino, incluyendo Phoenix, Scottsdale, Queen Creek, San Tan Valley, Cave Creek, Anthem, New River, Wickenburg y todas las Naciones Nativas.</p>
+      </div>
+
+      <div class="faq-item">
+        <h3>¿Cuánto cuesta el diseño de un sistema séptico?</h3>
+        <p>El precio depende del tamaño del terreno, las condiciones del suelo y el tipo de sistema requerido por ADEQ. Llámanos al <a href="tel:6028128609">(602) 812-8609</a> para una consulta gratuita — respondemos el mismo día.</p>
+      </div>
+    </section>
+
+    <section class="service-cta">
+      <h2>Still have questions? / ¿Más preguntas?</h2>
+      <p>Call <a href="tel:6028128609">(602) 812-8609</a> — same day response guaranteed.</p>
+      <a href="/#contact" class="btn">Contact Us / Contáctanos</a>
+    </section>
+  </main>
+</Layout>
+
+<style>
+  .faq-page { max-width: 860px; margin: 0 auto; padding: 4rem 2rem; font-family: 'Poppins', sans-serif; }
+  .faq-hero { text-align: center; margin-bottom: 4rem; }
+  .faq-hero h1 { font-size: 2.2rem; font-weight: 800; color: #154a2a; margin-bottom: 1rem; }
+  .faq-hero p { font-size: 1.1rem; color: #555; }
+  .faq-body h2 { font-size: 1.6rem; font-weight: 700; color: #154a2a; margin: 2.5rem 0 1.5rem; }
+  .faq-item { margin-bottom: 2rem; border-left: 4px solid #154a2a; padding-left: 1.5rem; }
+  .faq-item h3 { font-size: 1.1rem; font-weight: 600; color: #1a3a2a; margin-bottom: 0.6rem; }
+  .faq-item p { color: #555; line-height: 1.8; }
+  .faq-item a { color: #154a2a; font-weight: 600; }
+  .faq-divider { border: none; border-top: 2px solid #e0ede6; margin: 3rem 0; }
+  .service-cta { text-align: center; background: #f0f7f2; border-radius: 12px; padding: 3rem 2rem; margin-top: 4rem; }
+  .service-cta h2 { font-size: 1.6rem; color: #154a2a; margin-bottom: 1rem; }
+  .service-cta p { color: #555; margin-bottom: 2rem; }
+  .service-cta a[href^="tel"] { color: #154a2a; font-weight: 700; }
+  .btn { display: inline-block; background: #154a2a; color: white; padding: 13px 30px; border-radius: 8px; text-decoration: none; font-weight: 600; transition: background 0.3s; }
+  .btn:hover { background: #0d3019; }
+</style>
