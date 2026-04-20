@@ -1,0 +1,187 @@
+.Hero {
+  position: relative;
+  font-family: 'Muli', sans-serif;
+  padding-top: 80px;
+  box-sizing: border-box;
+  color: white;
+  z-index: 1;
+  min-height: 100vh;
+  width: 100%;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.Hero::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  min-height: 100vh;
+  background-image: linear-gradient(
+      rgba(54, 19, 63, 0.8),
+      rgba(54, 19, 63, 0.7)
+    ),
+    url("https://limpiezadecasas.cercademi.net/wp-content/uploads/2020/09/Precios-y-tarifas-de-limpieza-de-casa-en-EEUU.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  z-index: -1;
+}
+
+/* ─── LAYOUT ─── */
+.Hero-superior {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 40px;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 60px 70px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.Text-hero {
+  flex: 1;
+  max-width: 660px;
+}
+
+/* ─── TYPOGRAPHY ─── */
+.Texto-principal {
+  color: white;
+  font-size: clamp(2.2rem, 5.5vw, 5rem);
+  margin: 0 0 24px 0;
+  line-height: 1.1;
+}
+
+.Informacion-principal {
+  color: rgba(255, 255, 255, 0.9);
+  font-size: clamp(1rem, 2vw, 1.2rem);
+  font-weight: 500;
+  margin: 0 0 36px 0;
+  line-height: 1.6;
+  max-width: 520px;
+}
+
+/* ─── CTA BUTTONS ─── */
+.Hero-btns {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.btn-primary {
+  padding: 14px 32px;
+  background: #dd00ff;
+  color: #fff;
+  border: none;
+  border-radius: 50px;
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  font-family: inherit;
+  letter-spacing: 0.03em;
+}
+
+.btn-primary:hover {
+  background: #fff;
+  color: #69265d;
+  transform: translateY(-3px);
+  box-shadow: 0 10px 28px rgba(221, 0, 255, 0.4);
+}
+
+.btn-secondary {
+  padding: 14px 32px;
+  background: transparent;
+  color: #fff;
+  border: 2px solid rgba(255,255,255,0.6);
+  border-radius: 50px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  font-family: inherit;
+}
+
+.btn-secondary:hover {
+  border-color: #fff;
+  background: rgba(255,255,255,0.1);
+  transform: translateY(-3px);
+}
+
+/* ─── IMAGE ─── */
+.Hero-image {
+  flex-shrink: 0;
+}
+
+.Hero-image img {
+  width: clamp(200px, 25vw, 350px);
+  height: clamp(200px, 25vw, 350px);
+  object-fit: cover;
+  border-radius: 50%;
+  border: 4px solid rgba(255,255,255,0.25);
+  box-shadow: 0 0 60px rgba(221, 0, 255, 0.3);
+}
+
+/* ══════════════════════════════
+   RESPONSIVE
+══════════════════════════════ */
+
+/* Tablet */
+@media (max-width: 900px) {
+  .Hero-superior {
+    padding: 48px 40px;
+    gap: 32px;
+  }
+
+  .Hero-image img {
+    width: clamp(160px, 22vw, 260px);
+    height: clamp(160px, 22vw, 260px);
+  }
+}
+
+/* Mobile */
+@media (max-width: 640px) {
+  .Hero {
+    padding-top: 0px;
+  }
+
+  .Hero-superior {
+    flex-direction: column-reverse;
+    align-items: center;
+    text-align: center;
+    padding: 40px 20px 52px;
+    gap: 28px;
+  }
+
+  .Texto-principal {
+    font-size: clamp(2rem, 9vw, 2.8rem);
+  }
+
+  .Informacion-principal {
+    font-size: 1rem;
+    max-width: 100%;
+  }
+
+  .Hero-image img {
+    width: 280px;
+    height: 280px;
+  }
+
+  .Hero-btns {
+    justify-content: center;
+  }
+
+  .btn-primary,
+  .btn-secondary {
+    padding: 12px 26px;
+    font-size: 0.92rem;
+  }
+}

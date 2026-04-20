@@ -1,0 +1,62 @@
+---
+import SEO from "../components/SEO.astro";
+
+interface Props {
+  title?:string;
+  description?: string;
+  lang?: string;
+  
+}
+const { lang = "es" } = Astro.props;
+---
+
+<!doctype html>
+<html lang={lang}>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="keywords" content="house cleaning phoenix az, home cleaning glendale arizona, commercial cleaning phoenix, window cleaning phoenix, limpieza de casas phoenix, servicios de limpieza glendale" />
+    <meta name="author" content="Diaz Cleaning LLC" />
+    <meta name="geo.region" content="US-AZ" />
+    <meta name="geo.placename" content="Phoenix, Arizona" />
+  <SEO
+    title="Diaz Cleaning LLC | House & Commercial Cleaning Phoenix AZ"
+    description="Professional house, commercial and window cleaning in Phoenix, Glendale & surrounding areas. Trusted, reliable & affordable. Call (480) 479-4507."
+  />
+  </head>
+    <SEO
+      title="Diaz Cleaning LLC – Limpieza Profesional en Phoenix, AZ"
+      description="Servicios profesionales de limpieza residencial, comercial e industrial en Phoenix, Arizona. Llámanos al (480) 479-4507."
+    />
+    <link rel="icon" type="image/png" href="/favicon.png" />
+    <link href="https://fonts.googleapis.com/css2?family=Mulish:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  </head>
+  <body>
+    <slot />
+  </body>
+</html>
+
+<style is:global>
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  body {
+    font-family: 'Mulish', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-style: normal;
+    overflow-x: hidden;
+    margin-top: 80px;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  @media (max-width: 640px) {
+    body {
+      margin-top: 64px;
+    }
+  }
+</style>

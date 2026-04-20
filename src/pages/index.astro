@@ -1,0 +1,24 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Navbar from "../components/Navbar/navbar.jsx";
+import Hero from "../components/Hero/Hero.jsx";
+import Servicios from "../components/Servicios/Servicios.jsx";
+import AboutUs from "../components/SobreNosotros/SobreNosotros.jsx";
+import Gallery from "../components/Galeria/Galeria.jsx";
+import Contacto from "../components/Contacto/Contacto.jsx";
+import Footer from "../components/Footer/Footer.jsx";
+import FloatingContact from "../components/FloatingContact/FloatingContact.jsx";
+import LanguageModal from "../components/LanguageModal/LanguageModal";
+---
+
+<Layout>
+  <LanguageModal client:load />
+  <Navbar client:load />
+  <Hero client:load />
+  <Servicios client:visible />
+  <AboutUs client:visible />
+  <Gallery client:visible />
+  <Contacto client:visible />
+  <Footer client:visible />
+  <FloatingContact client:load />
+</Layout>

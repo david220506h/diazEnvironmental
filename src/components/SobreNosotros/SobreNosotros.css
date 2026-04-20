@@ -1,0 +1,347 @@
+.about-section {
+  position: relative;
+  padding: 90px 20px;
+  background: #fff;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  overflow: hidden;
+}
+
+/* ─── DECORATIVE BLOB ─── */
+.about-blob {
+  position: absolute;
+  top: -80px;
+  left: -120px;
+  width: 520px;
+  height: 520px;
+  background: linear-gradient(135deg, #f3e8ff 0%, #e0c8f8 100%);
+  border-radius: 60% 40% 55% 45% / 50% 60% 40% 50%;
+  z-index: 0;
+  opacity: 0.55;
+  pointer-events: none;
+}
+
+/* ─── LAYOUT ─── */
+.about-container {
+  position: relative;
+  z-index: 1;
+  max-width: 1160px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1.1fr;
+  gap: 64px;
+  align-items: center;
+}
+
+/* ─── IMAGE COL ─── */
+.about-image-col {
+  display: flex;
+  justify-content: center;
+}
+
+.about-image-wrap {
+  position: relative;
+  width: 100%;
+  max-width: 460px;
+}
+
+.about-img {
+  width: 100%;
+  height: 480px;
+  object-fit: cover;
+  border-radius: 32px 32px 80px 32px;
+  box-shadow: 0 24px 64px rgba(155, 48, 138, 0.18);
+  display: block;
+}
+
+/* Floating BBB badge */
+.about-badge {
+  position: absolute;
+  bottom: 28px;
+  right: -20px;
+  background: linear-gradient(135deg, #9b308a, #764ba2);
+  color: #fff;
+  border-radius: 16px;
+  padding: 14px 20px;
+  text-align: center;
+  box-shadow: 0 8px 24px rgba(155, 48, 138, 0.4);
+  line-height: 1;
+}
+
+.badge-num {
+  display: block;
+  font-size: 1.8rem;
+  font-weight: 900;
+  letter-spacing: -0.02em;
+}
+
+.badge-txt {
+  display: block;
+  font-size: 0.75rem;
+  font-weight: 600;
+  opacity: 0.85;
+  margin-top: 2px;
+  letter-spacing: 0.1em;
+}
+
+/* ─── CONTENT COL ─── */
+.about-tag {
+  display: inline-block;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  color: #9b308a;
+  text-transform: uppercase;
+  margin-bottom: 14px;
+  padding: 5px 14px;
+  background: #f8e8ff;
+  border-radius: 20px;
+}
+
+.about-title {
+  font-size: clamp(1.6rem, 3vw, 2.3rem);
+  color: #2c3e50;
+  font-weight: 800;
+  line-height: 1.2;
+  margin: 0 0 20px;
+}
+
+.about-desc {
+  font-size: 0.97rem;
+  color: #555;
+  line-height: 1.75;
+  margin-bottom: 28px;
+  max-width: 540px;
+}
+
+/* ─── FEATURES ─── */
+.about-features {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.about-feature-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 0.93rem;
+  color: #444;
+  font-weight: 500;
+  opacity: 0;
+  animation: featureIn 0.45s ease forwards;
+}
+
+@keyframes featureIn {
+  from { opacity: 0; transform: translateX(-12px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+.feature-icon {
+  color: #9b308a;
+  font-size: 1rem;
+  flex-shrink: 0;
+  background: #f8e8ff;
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ─── STATS ─── */
+.about-stats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+  margin-bottom: 28px;
+  padding: 20px;
+  background: linear-gradient(135deg, #fdf4ff, #f3e8ff);
+  border-radius: 16px;
+  border: 1px solid rgba(155, 48, 138, 0.12);
+}
+
+.stat-item {
+  text-align: center;
+}
+
+.stat-value {
+  display: block;
+  font-size: 1.5rem;
+  font-weight: 900;
+  color: #9b308a;
+  line-height: 1;
+  margin-bottom: 4px;
+}
+
+.stat-label {
+  font-size: 0.72rem;
+  color: #777;
+  font-weight: 500;
+  line-height: 1.3;
+}
+
+/* ─── PROGRESS BAR ─── */
+.about-bar-wrap {
+  margin-bottom: 30px;
+}
+
+.bar-header {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: #444;
+  margin-bottom: 8px;
+}
+
+.bar-pct {
+  color: #9b308a;
+  font-weight: 700;
+}
+
+.bar-track {
+  height: 10px;
+  background: #f0e0fa;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.bar-fill {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, #9b308a, #c266ea);
+  border-radius: 10px;
+  transition: width 1.4s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.bar-fill.animated {
+  width: 95%;
+}
+
+/* ─── CTA ROW ─── */
+.about-cta-row {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+  flex-wrap: wrap;
+}
+
+.about-cta-btn {
+  padding: 13px 30px;
+  background: linear-gradient(135deg, #9b308a, #764ba2);
+  color: #fff;
+  text-decoration: none;
+  border-radius: 50px;
+  font-weight: 700;
+  font-size: 0.95rem;
+  transition: all 0.3s ease;
+  white-space: nowrap;
+}
+
+.about-cta-btn:hover {
+  background: linear-gradient(135deg, #b03aa0, #8a55b8);
+  transform: translateY(-3px);
+  box-shadow: 0 8px 24px rgba(155, 48, 138, 0.4);
+}
+
+.about-phone {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.phone-icon-wrap {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #f3e8ff, #e0c8f8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #9b308a;
+  font-size: 1rem;
+  flex-shrink: 0;
+}
+
+.phone-label {
+  display: block;
+  font-size: 0.75rem;
+  color: #888;
+  font-weight: 500;
+}
+
+.phone-number {
+  display: block;
+  font-size: 1rem;
+  color: #2c3e50;
+  font-weight: 700;
+}
+
+/* ══════════════════════════════
+   RESPONSIVE
+══════════════════════════════ */
+@media (max-width: 960px) {
+  .about-container {
+    grid-template-columns: 1fr;
+    gap: 48px;
+  }
+
+  .about-image-col {
+    order: 2;
+  }
+
+  .about-content-col {
+    order: 1;
+  }
+
+  .about-img {
+    height: 360px;
+    border-radius: 24px;
+  }
+
+  .about-badge {
+    right: 12px;
+    bottom: 16px;
+  }
+
+  .about-blob {
+    width: 320px;
+    height: 320px;
+    top: -40px;
+    left: -80px;
+  }
+
+  .about-stats {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+  }
+}
+
+@media (max-width: 560px) {
+  .about-section {
+    padding: 60px 16px;
+  }
+
+  .about-img {
+    height: 280px;
+  }
+
+  .about-stats {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .about-cta-row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 18px;
+  }
+
+  .about-cta-btn {
+    width: 100%;
+    text-align: center;
+  }
+}

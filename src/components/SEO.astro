@@ -1,0 +1,44 @@
+---
+const schema = JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  "name": "Diaz Cleaning LLC",
+  "description": "Professional house, commercial and window cleaning services in Phoenix, Glendale, Scottsdale and surrounding areas of Arizona.",
+  "telephone": "+14804794507",
+  "email": "diazcleaning.az@gmail.com",
+  "url": "https://diazcleaning.com",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "9838 N 44th Drive",
+    "addressLocality": "Glendale",
+    "addressRegion": "AZ",
+    "postalCode": "85302",
+    "addressCountry": "US"
+  },
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": 33.5386,
+    "longitude": -112.1442
+  },
+  "areaServed": [
+    "Phoenix", "Glendale", "Scottsdale", "Tempe", "Mesa",
+    "Chandler", "Peoria", "Surprise", "Avondale", "Goodyear",
+    "Maricopa County", "Arizona"
+  ],
+  "openingHours": ["Mo-Fr 08:00-18:00", "Sa 09:00-14:00"],
+  "priceRange": "$$",
+  "serviceType": [
+    "House Cleaning", "Commercial Cleaning", "Window Cleaning",
+    "Deep Cleaning", "Office Cleaning", "Industrial Cleaning"
+  ],
+  "hasOfferCatalog": {
+    "@type": "OfferCatalog",
+    "name": "Cleaning Services",
+    "itemListElement": [
+      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "House Cleaning Phoenix AZ" } },
+      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Commercial Cleaning Phoenix AZ" } },
+      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Window Cleaning Phoenix AZ" } }
+    ]
+  }
+});
+---
