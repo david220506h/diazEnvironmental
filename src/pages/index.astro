@@ -14,6 +14,14 @@ import CustomCursor from "../components/CustomCursor/CustomCursor.jsx";
 ---
 
 <Layout>
+  <!-- Oculta el contenido del Hero hasta que GSAP lo anime (evita el parpadeo al hidratar).
+       Si el JS falla, se vuelve visible solo a los 4 s. -->
+  <script is:inline>
+    if (!matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      document.documentElement.classList.add("hero-anim");
+      setTimeout(function () { document.documentElement.classList.remove("hero-anim"); }, 4000);
+    }
+  </script>
   <SmoothScroll client:load />
   <CustomCursor client:load />
   <LanguageModal client:load />
