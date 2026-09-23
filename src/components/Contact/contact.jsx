@@ -106,42 +106,42 @@ const Contact = () => {
         <form className="contact-form" onSubmit={handleSubmit}>
           <div className="form-row">
             <div className="form-group">
-              <label>{tx.firstName}</label>
-              <input type="text" name="firstName" value={formData.firstName} onChange={handleChange} required />
+              <label htmlFor="contact-firstName">{tx.firstName}</label>
+              <input type="text" id="contact-firstName" name="firstName" value={formData.firstName} onChange={handleChange} required />
             </div>
             <div className="form-group">
-              <label>{tx.lastName}</label>
-              <input type="text" name="lastName" value={formData.lastName} onChange={handleChange} required />
+              <label htmlFor="contact-lastName">{tx.lastName}</label>
+              <input type="text" id="contact-lastName" name="lastName" value={formData.lastName} onChange={handleChange} required />
             </div>
           </div>
 
           <div className="form-row">
             <div className="form-group">
-              <label>{tx.phone}</label>
-              <input type="tel" name="phone" value={formData.phone} onChange={handleChange} inputMode="numeric" pattern="[0-9]{10}" maxLength={10} required />
+              <label htmlFor="contact-phone">{tx.phone}</label>
+              <input type="tel" id="contact-phone" name="phone" value={formData.phone} onChange={handleChange} inputMode="numeric" pattern="[0-9]{10}" maxLength={10} required />
             </div>
             <div className="form-group">
-              <label>{tx.email}</label>
-              <input type="email" name="email" value={formData.email} onChange={handleChange} required />
+              <label htmlFor="contact-email">{tx.email}</label>
+              <input type="email" id="contact-email" name="email" value={formData.email} onChange={handleChange} required />
             </div>
           </div>
 
           <div className="form-group">
-            <label>{tx.address}</label>
-            <input type="text" name="address" value={formData.address} onChange={handleChange} placeholder={language === "es" ? "Ingresa una dirección" : "Enter a location"} required />
+            <label htmlFor="contact-address">{tx.address}</label>
+            <input type="text" id="contact-address" name="address" value={formData.address} onChange={handleChange} placeholder={language === "es" ? "Ingresa una dirección" : "Enter a location"} required />
           </div>
 
           <div className="form-group">
-            <label>{tx.serviceLabel}</label>
-            <select name="serviceType" value={formData.serviceType} onChange={handleChange} required>
+            <label htmlFor="contact-serviceType">{tx.serviceLabel}</label>
+            <select id="contact-serviceType" name="serviceType" value={formData.serviceType} onChange={handleChange} required>
               <option value="" disabled>{tx.selectService}</option>
               {tx.services.map(s => <option key={s.value} value={s.value}>{s.label}</option>)}
             </select>
           </div>
 
           <div className="form-group">
-            <label>{tx.newCustomer}</label>
-            <select name="newCustomer" value={formData.newCustomer} onChange={handleChange} required>
+            <label htmlFor="contact-newCustomer">{tx.newCustomer}</label>
+            <select id="contact-newCustomer" name="newCustomer" value={formData.newCustomer} onChange={handleChange} required>
               <option value="" disabled>{tx.select}</option>
               <option value="yes">{tx.yes}</option>
               <option value="no">{tx.no}</option>
@@ -149,8 +149,8 @@ const Contact = () => {
           </div>
 
           <div className="form-group">
-            <label>{tx.messageLabel}</label>
-            <textarea name="message" value={formData.message} onChange={handleChange} rows="4" required></textarea>
+            <label htmlFor="contact-message">{tx.messageLabel}</label>
+            <textarea id="contact-message" name="message" value={formData.message} onChange={handleChange} rows="4" required></textarea>
           </div>
 
           <div className="form-group text-consent">
