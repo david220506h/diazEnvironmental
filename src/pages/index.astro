@@ -27,12 +27,12 @@ import CustomCursor from "../components/CustomCursor/CustomCursor.jsx";
   <LanguageModal client:load />
   <Navbar client:load />
   <Hero client:load />
-  <!-- client:load (no :visible): así el reveal prepara las tarjetas antes de que entren en pantalla, sin parpadeo -->
+  <!-- Services y Projects con client:load (no :visible): así el reveal prepara las tarjetas antes de que entren en pantalla, sin parpadeo -->
   <Services client:load />
   <section id="about">
     <AboutUs client:visible />
   </section>
-  <Projects client:visible />
+  <Projects client:load />
   <Contact client:visible />
   <Footer client:visible />
   <FloatingContact client:load />

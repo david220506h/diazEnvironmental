@@ -206,7 +206,7 @@
 
 /* Mobile carousel specific styles */
 .mobile-carousel .carousel-wrapper {
-  touch-action: none; /* Prevent all browser handling */
+  touch-action: pan-y; /* scroll vertical lo hace el navegador; el swipe horizontal lo maneja el carrusel */
   user-select: none;
   -webkit-user-select: none;
 }
@@ -217,7 +217,8 @@
   border-radius: 10px;
   overflow: hidden;
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
-  transition: all 0.4s ease;
+  /* transform lo controla GSAP (reveal + useTilt); una transición CSS sobre transform lo haría ir a tirones */
+  transition: box-shadow 0.4s ease;
   height: 100%;
   display: flex;
   flex-direction: column;
@@ -225,8 +226,7 @@
 }
 
 .project-card:hover {
-  transform: translateY(-10px);
-  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 18px 40px -12px rgba(13, 54, 32, 0.28);
 }
 
 .project-image {
@@ -328,12 +328,13 @@
   text-decoration: none;
   border-radius: 5px;
   font-weight: 600;
-  transition: all 0.3s ease;
+  /* sin "all": transform lo maneja useMagnetic */
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  will-change: transform;
 }
 
 .cta-button:hover {
   background-color: #154a2a;
-  transform: translateY(-3px);
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
 }
 

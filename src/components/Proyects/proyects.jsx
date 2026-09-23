@@ -3,6 +3,9 @@ import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 import "./Project.css";
 import { useStore } from "@nanostores/react";
 import { languageStore } from "../../stores/language";
+import useTilt from "../../hooks/useTilt";
+import useMagnetic from "../../hooks/useMagnetic";
+import useScrollReveal from "../../hooks/useScrollReveal";
 
 import project1 from "../../assets/images/projects/project1.jpg";
 import project2 from "../../assets/images/projects/Project2.jpg";
@@ -28,47 +31,30 @@ const projectsData = {
   ],
 };
 
-const useInView = (ref, options = {}) => {
-  const [isInView, setIsInView] = useState(false);
-  useEffect(() => {
-    const currentRef = ref.current;
-    if (!currentRef) return;
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsInView(true);
-          if (options.once) observer.unobserve(currentRef);
-        } else if (!options.once) {
-          setIsInView(false);
-        }
-      },
-      { threshold: 0.1, rootMargin: options.margin || "0px" }
-    );
-    observer.observe(currentRef);
-    return () => observer.unobserve(currentRef);
-  }, [ref, options.once, options.margin]);
-  return isInView;
-};
+const ProjectCard = ({ title, category, description, image, requestLabel }) => {
+  const tiltRef = useTilt();
 
-const ProjectCard = ({ title, category, description, image, requestLabel }) => (
-  <div className="project-card">
-    <div className="project-image">
-      <img src={image} alt={title} />
-      <div className="project-category">{category}</div>
+  return (
+    <div className="project-card" ref={tiltRef} data-reveal>
+      <div className="project-image">
+        <img src={image} alt={title} />
+        <div className="project-category">{category}</div>
+      </div>
+      <div className="project-content">
+        <h3 className="project-title">{title}</h3>
+        <p className="project-description">{description}</p>
+        <a href="#contact" className="project-link">{requestLabel}</a>
+      </div>
     </div>
-    <div className="project-content">
-      <h3 className="project-title">{title}</h3>
-      <p className="project-description">{description}</p>
-      <a href="#contact" className="project-link">{requestLabel}</a>
-    </div>
-  </div>
-);
+  );
+};
 
 const Projects = () => {
   const language = useStore(languageStore);
   const sectionRef = useRef(null);
   const carouselRef = useRef(null);
-  const isInView = useInView(sectionRef, { once: true, margin: "-100px 0px" });
+  const ctaRef = useMagnetic({ strength: 0.25 });
+  useScrollReveal(sectionRef);
 
   // Clave interna estable. "all" no se traduce; solo su etiqueta visible.
   const [activeFilter, setActiveFilter] = useState("all");
@@ -138,20 +124,12 @@ const Projects = () => {
   const requestLabel = language === "es" ? "Solicitar servicio similar" : "Request similar service";
 
   return (
-    <section id="projects" className="projects">
+    <section id="projects" className="projects" ref={sectionRef}>
       <div className="container">
-        <h2
-          className="section-title"
-          ref={sectionRef}
-          style={{
-            opacity: isInView ? 1 : 0,
-            transform: isInView ? "translateY(0)" : "translateY(-30px)",
-            transition: "opacity 0.5s ease, transform 0.5s ease",
-          }}
-        >
+        <h2 className="section-title" data-reveal>
           {language === "es" ? "NUESTROS PROYECTOS" : "OUR PROJECTS"}
         </h2>
-        <p className="section-subtitle" style={{ opacity: isInView ? 1 : 0, transition: "opacity 0.5s ease 0.2s" }}>
+        <p className="section-subtitle" data-reveal>
           {language === "es"
             ? "Una muestra de nuestro trabajo reciente e implementaciones exitosas"
             : "A showcase of our recent work and successful implementations"}
@@ -217,7 +195,7 @@ const Projects = () => {
 
         <div className="projects-cta">
           <p>{language === "es" ? "¿Buscas un tipo específico de proyecto o servicio?" : "Looking for a specific type of project or service?"}</p>
-          <a href="#contact" className="cta-button">
+          <a href="#contact" className="cta-button" ref={ctaRef}>
             {language === "es" ? "Contáctanos para una consulta" : "Contact us for a consultation"}
           </a>
         </div>
