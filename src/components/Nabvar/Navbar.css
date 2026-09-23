@@ -40,7 +40,7 @@
 
 /* ----- LOGO O NOMBRE DE MARCA ----- */
 .navbar-logo {
-  color: #006414;
+  color: var(--color-brand-vivid);
   font-size: 1.8rem;
   font-weight: 600;
   font-size:xx-large;
@@ -112,7 +112,7 @@
 /* Hover / enlace activo: color verde + subrayado (.nav-item::after) */
 .nav-links:hover,
 .nav-links.active {
-  color: #006414;
+  color: var(--color-brand-vivid);
 }
 
 .nav-links.active {
@@ -169,13 +169,13 @@
 }
 
 .menu-icon:hover {
-  color: #006414;
+  color: var(--color-brand-vivid);
 }
 
 /* ----- BOTÓN CTA DENTRO DEL NAV ----- */
 .nav-cta {
   margin-left: 15px;
-  background-color: #006414;
+  background-color: var(--color-brand-vivid);
   color: #fff;
   padding: 10px 20px;
   border-radius: 4px;

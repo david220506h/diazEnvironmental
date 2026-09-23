@@ -112,7 +112,7 @@
 
 
 .phone-option {
-  background-color: #4caf50;
+  background-color: var(--color-green-600); /* verde de marca; distinto del green-700 de "Formulario" */
 }
 
 .whatsapp-option {
