@@ -1,8 +1,11 @@
-import { useRef, useEffect, useState } from "react";
+import { useRef, useEffect, useState, useCallback } from "react";
 import { FaTools, FaHome, FaWrench, FaWater, FaToilet, FaToolbox, FaTimes, FaChevronLeft, FaChevronRight } from "react-icons/fa";
 import "./Services.css";
 import { useStore } from "@nanostores/react";
 import { languageStore } from "../../stores/language";
+import useTilt from "../../hooks/useTilt";
+import useMagnetic from "../../hooks/useMagnetic";
+import useScrollReveal from "../../hooks/useScrollReveal";
 
 import SepticSystem        from "../../assets/images/services/pruebaDePercolasion.jpeg";
 import SepticSystem2        from "../../assets/images/services/pruebaDePercolasion2.jpeg";
@@ -17,34 +20,16 @@ import rendimiento2       from "../../assets/images/services/rendimiento2.jpeg";
 
 const Icon = ({ icon: IconComponent }) => IconComponent ? <IconComponent /> : null;
 
-const useInView = (ref, options = {}) => {
-  const [isInView, setIsInView] = useState(false);
-  useEffect(() => {
-    const currentRef = ref.current;
-    const observer = new IntersectionObserver(
-      ([entry]) => { if (options.once && isInView) return; setIsInView(entry.isIntersecting); },
-      { threshold: options.threshold || 0.1, rootMargin: options.margin || "0px" }
-    );
-    if (currentRef) observer.observe(currentRef);
-    return () => { if (currentRef) observer.unobserve(currentRef); };
-  }, [ref, options.once, options.margin, options.threshold, isInView]);
-  return isInView;
-};
-
-const ServiceCard = ({ icon, title, shortDescription, image, delay = 0, onClick }) => {
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-100px 0px", threshold: 0.2 });
+const ServiceCard = ({ icon, title, shortDescription, image, onClick }) => {
+  const tiltRef = useTilt();
+  const infoRef = useMagnetic({ strength: 0.3, radius: 20 });
 
   return (
     <div
       className="service-card"
-      ref={ref}
+      ref={tiltRef}
       onClick={onClick}
-      style={{
-        opacity: isInView ? 1 : 0,
-        transform: isInView ? "translateY(0)" : "translateY(50px)",
-        transition: `opacity 0.6s ease ${delay}s, transform 0.6s ease ${delay}s`,
-      }}
+      data-reveal
     >
       <div className="service-image">
         <img src={image} alt={title} />
@@ -54,22 +39,35 @@ const ServiceCard = ({ icon, title, shortDescription, image, delay = 0, onClick 
         <h3 className="service-title">{title}</h3>
         <p className="service-description">{shortDescription}</p>
         <div className="service-read-more">
-          <span>+ Info</span>
+          <span ref={infoRef}>+ Info</span>
         </div>
       </div>
     </div>
   );
 };
 
+const MODAL_EXIT_MS = 250; // igual que la animación de salida en Services.css
+
 const ServiceModal = ({ service, onClose, requestLabel }) => {
   const [currentImg, setCurrentImg] = useState(0);
+  const [closing, setClosing] = useState(false);
+  const closingRef = useRef(false);
+  const ctaRef = useMagnetic({ strength: 0.25 });
   const images = service.images || [service.image];
+
+  // Cierre con fade: se desmonta al terminar la animación de salida
+  const requestClose = useCallback(() => {
+    if (closingRef.current) return;
+    closingRef.current = true;
+    setClosing(true);
+    setTimeout(onClose, MODAL_EXIT_MS);
+  }, [onClose]);
 
   useEffect(() => {
     setCurrentImg(0);
     document.body.style.overflow = "hidden";
     const handleKey = (e) => {
-      if (e.key === "Escape") onClose();
+      if (e.key === "Escape") requestClose();
       if (e.key === "ArrowLeft") setCurrentImg(i => (i - 1 + images.length) % images.length);
       if (e.key === "ArrowRight") setCurrentImg(i => (i + 1) % images.length);
     };
@@ -78,15 +76,15 @@ const ServiceModal = ({ service, onClose, requestLabel }) => {
       document.body.style.overflow = "";
       window.removeEventListener("keydown", handleKey);
     };
-  }, [onClose, images.length]);
+  }, [requestClose, images.length]);
 
   const prev = () => setCurrentImg(i => (i - 1 + images.length) % images.length);
   const next = () => setCurrentImg(i => (i + 1) % images.length);
 
   return (
-    <div className="service-modal-overlay" onClick={onClose}>
+    <div className={`service-modal-overlay${closing ? " is-closing" : ""}`} onClick={requestClose}>
       <div className="service-modal" onClick={e => e.stopPropagation()}>
-        <button className="service-modal-close" onClick={onClose}>
+        <button className="service-modal-close" onClick={requestClose}>
           <FaTimes />
         </button>
 
@@ -131,7 +129,8 @@ const ServiceModal = ({ service, onClose, requestLabel }) => {
         <div className="service-modal-body">
           <h3 className="service-modal-title">{service.title}</h3>
           <p className="service-modal-description">{service.fullDescription}</p>
-          <a href="#contact" className="service-modal-cta" onClick={onClose}>
+          {/* Cierre inmediato (sin fade): Lenis debe estar activo para hacer scroll a #contact */}
+          <a href="#contact" className="service-modal-cta" onClick={onClose} ref={ctaRef}>
             {requestLabel}
           </a>
         </div>
@@ -143,7 +142,7 @@ const ServiceModal = ({ service, onClose, requestLabel }) => {
 const Services = () => {
   const language = useStore(languageStore);
   const sectionRef = useRef(null);
-  const isInView = useInView(sectionRef, { once: true, margin: "-100px 0px" });
+  useScrollReveal(sectionRef);
   const [selectedService, setSelectedService] = useState(null);
 
   const services = {
@@ -228,20 +227,12 @@ const Services = () => {
   const requestLabel = language === "es" ? "Solicitar este servicio" : "Request this service";
 
   return (
-    <section id="services" className="services">
+    <section id="services" className="services" ref={sectionRef}>
       <div className="container">
-        <h2
-          className="section-title"
-          ref={sectionRef}
-          style={{
-            opacity: isInView ? 1 : 0,
-            transform: isInView ? "translateY(0)" : "translateY(-30px)",
-            transition: "opacity 0.6s ease, transform 0.6s ease",
-          }}
-        >
+        <h2 className="section-title" data-reveal>
           {language === "es" ? "NUESTROS SERVICIOS" : "OUR SERVICES"}
         </h2>
-        <p className="section-subtitle" style={{ opacity: isInView ? 1 : 0, transition: "opacity 0.6s ease 0.2s" }}>
+        <p className="section-subtitle" data-reveal>
           {language === "es"
             ? "Soluciones completas para tus necesidades sépticas y ambientales"
             : "Complete solutions for your septic and environmental needs"}
@@ -256,7 +247,6 @@ const Services = () => {
                 title={service.title}
                 shortDescription={service.shortDescription}
                 image={service.image}
-                delay={0.1 * index}
                 onClick={() => setSelectedService(service)}
               />
             ))}

@@ -31,14 +31,15 @@
   overflow: hidden;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.07);
   cursor: pointer;
-  transition: box-shadow 0.3s ease, transform 0.3s ease;
+  /* transform lo controla GSAP (reveal + useTilt); una transición CSS sobre transform lo haría ir a tirones */
+  transition: box-shadow 0.3s ease;
   display: flex;
   flex-direction: column;
+  will-change: transform;
 }
 
 .service-card:hover {
-  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.13);
-  transform: translateY(-4px);
+  box-shadow: 0 18px 40px -12px rgba(13, 54, 32, 0.28);
 }
 
 .service-image {
@@ -96,7 +97,8 @@
   border: 2px solid #1a5f36;
   padding: 4px 14px;
   border-radius: 20px;
-  transition: all 0.3s ease;
+  /* sin "all": transform lo maneja useMagnetic */
+  transition: background-color 0.3s ease, color 0.3s ease;
   display: inline-block;
 }
 
@@ -138,6 +140,26 @@
 @keyframes slideUp {
   from { transform: translateY(30px); opacity: 0; }
   to   { transform: translateY(0);    opacity: 1; }
+}
+
+/* Salida: el overlay se desvanece y el modal baja (0.25s = MODAL_EXIT_MS en Services.jsx) */
+.service-modal-overlay.is-closing {
+  animation: serviceOverlayOut 0.25s ease forwards;
+  pointer-events: none;
+}
+
+.service-modal-overlay.is-closing .service-modal {
+  animation: serviceModalOut 0.25s ease forwards;
+}
+
+@keyframes serviceOverlayOut {
+  from { opacity: 1; }
+  to   { opacity: 0; }
+}
+
+@keyframes serviceModalOut {
+  from { transform: translateY(0);    opacity: 1; }
+  to   { transform: translateY(20px); opacity: 0; }
 }
 
 .service-modal-close {
@@ -289,6 +311,7 @@
   font-size: 0.95rem;
   text-decoration: none;
   transition: background 0.3s ease;
+  will-change: transform;
 }
 
 .service-modal-cta:hover { background-color: #0d3019; }

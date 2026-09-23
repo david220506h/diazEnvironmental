@@ -27,7 +27,8 @@ import CustomCursor from "../components/CustomCursor/CustomCursor.jsx";
   <LanguageModal client:load />
   <Navbar client:load />
   <Hero client:load />
-  <Services client:visible />
+  <!-- client:load (no :visible): así el reveal prepara las tarjetas antes de que entren en pantalla, sin parpadeo -->
+  <Services client:load />
   <section id="about">
     <AboutUs client:visible />
   </section>
