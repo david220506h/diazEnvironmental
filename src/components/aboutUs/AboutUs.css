@@ -14,7 +14,9 @@
 }
 
 .about-header h1 {
-  font-size: 2.5rem;
+  /* fluido: "DiazEnvironmental!" es una sola palabra y a 2.5rem fijo se salía en celular */
+  font-size: clamp(1.8rem, 7vw, 2.5rem);
+  overflow-wrap: anywhere;
   color: #1a5f36; /* Color verde oscuro corporativo */
   margin-bottom: 1.5rem;
 }
@@ -105,7 +107,9 @@
   border-radius: 5px;
   cursor: pointer;
   font-weight: bold;
-  transition: all 0.3s ease;
+  /* sin "all": transform lo maneja useMagnetic en .primary-btn */
+  transition: background-color 0.3s ease, box-shadow 0.3s ease, color 0.3s ease;
+  will-change: transform;
 }
 
 .primary-btn {
