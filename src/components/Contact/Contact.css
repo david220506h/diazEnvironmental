@@ -1,9 +1,9 @@
 /* Contact.css */
 .contact-section {
-    --contact-green-900: #0b2e1a;
-    --contact-green-800: #0f3d24;
-    --contact-mint: #9fd3ae;   /* acento para foco y radios, legible sobre verde oscuro */
-    --contact-cream: #f4f1e6;  /* mismo crema que el CTA del Hero */
+    --contact-green-900: var(--color-green-950);
+    --contact-green-800: var(--color-green-900);
+    --contact-mint: var(--color-mint);   /* acento para foco y radios, legible sobre verde oscuro */
+    --contact-cream: var(--color-cream);  /* mismo crema que el CTA del Hero */
 
     padding: 5rem 0;
     background:

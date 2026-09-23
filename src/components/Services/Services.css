@@ -1,6 +1,6 @@
 .services {
   padding: 100px 0;
-  background-color: #f8f9fa;
+  background-color: var(--color-surface);
 }
 
 .services-container {
@@ -11,7 +11,7 @@
 .section-subtitle {
   text-align: center;
   font-size: 1.2rem;
-  color: #666;
+  color: var(--color-text-muted);
   margin-bottom: 60px;
   max-width: 700px;
   margin-left: auto;
@@ -78,7 +78,7 @@
 
 .service-description {
   font-size: 0.9rem;
-  color: #666;
+  color: var(--color-text-muted);
   line-height: 1.6;
   flex: 1;
   display: -webkit-box;
@@ -92,10 +92,10 @@
 }
 
 .service-read-more span {
-  color: #1a5f36;
+  color: var(--color-green-700);
   font-weight: 700;
   font-size: 0.85rem;
-  border: 2px solid #1a5f36;
+  border: 2px solid var(--color-green-700);
   padding: 4px 14px;
   border-radius: 20px;
   /* sin "all": transform lo maneja useMagnetic */
@@ -104,7 +104,7 @@
 }
 
 .service-card:hover .service-read-more span {
-  background-color: #1a5f36;
+  background-color: var(--color-green-700);
   color: white;
 }
 
@@ -268,7 +268,7 @@
   width: 52px;
   height: 40px;
   object-fit: contain;
-  background: #154a2a;
+  background: var(--color-green-800);
   border-radius: 4px;
   cursor: pointer;
   opacity: 0.6;
@@ -304,7 +304,7 @@
 
 .service-modal-cta {
   display: inline-block;
-  background-color: #154a2a;
+  background-color: var(--color-green-800);
   color: white;
   padding: 12px 28px;
   border-radius: 8px;
@@ -333,5 +333,5 @@
   transform: translateX(-50%);
   width: 60px;
   height: 4px;
-  background: #154a2a;
+  background: var(--color-green-800);
 }

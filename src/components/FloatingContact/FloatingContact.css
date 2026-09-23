@@ -21,7 +21,7 @@
   width: 60px;
   height: 60px;
   border-radius: 50%;
-  background-color: #1a5f36;
+  background-color: var(--color-green-700);
   color: white;
   border: none;
   cursor: pointer;
@@ -38,7 +38,7 @@
 .contact-toggle:hover,
 .contact-toggle:focus {
   transform: scale(1.1);
-  background-color: #154a2a;
+  background-color: var(--color-green-800);
   outline: none;
 }
 
@@ -127,15 +127,8 @@
   background-color: #2196f3;
 }
 
-.facebook-option {
-  background-color: #3b5998;
-}
-
 .form-option {
-  background-color: #1a5f36;
-}
-.instagram-option {
-  background-color: #fa7e1e;
+  background-color: var(--color-green-700);
 }
 
 

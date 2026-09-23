@@ -79,7 +79,7 @@
   height: 3px;
   bottom: 0;
   left: 50%;
-  background-color: #1a5f36;
+  background-color: var(--color-green-700);
   transition: all 0.3s ease;
   transform: translateX(-50%);
   border-radius: 3px 3px 0 0;
@@ -97,7 +97,7 @@
 /* ----- LINKS DEL MENÚ ----- */
 .nav-links {
   user-select: none;
-  color: #333;
+  color: var(--color-text);
   display: flex;
   align-items: center;
   text-decoration: none;
@@ -136,7 +136,7 @@
   border: 1px solid rgba(26, 95, 54, 0.25);
   border-radius: 999px;
   background-color: rgba(255, 255, 255, 0.7);
-  color: #1a5f36;
+  color: var(--color-green-700);
   font: inherit;
   font-size: 0.85rem;
   font-weight: 600;
@@ -147,7 +147,7 @@
 
 .lang-switch:hover {
   background-color: #ffffff;
-  border-color: #1a5f36;
+  border-color: var(--color-green-700);
   box-shadow: 0 4px 12px rgba(26, 95, 54, 0.15);
 }
 
@@ -162,7 +162,7 @@
 /* ----- ÍCONO HAMBURGUESA (MÓVIL) ----- */
 .menu-icon {
   display: none;
-  color: #333;
+  color: var(--color-text);
   font-size: 1.8rem;
   cursor: pointer;
   transition: color 0.3s ease;

@@ -63,14 +63,13 @@
   font-weight: 700;
   cursor: pointer;
   transition: all 0.3s ease;
-  font-family: 'Mulish', sans-serif;
 }
 
 .lang-btn:hover {
-  background:#2d7a4f;;
+  background:var(--color-green-600);;
   border-color:#266943;;
   transform: translateY(-4px);
-  box-shadow: 0 10px 30px #2d7a4f;;
+  box-shadow: 0 10px 30px var(--color-green-600);;
 }
 
 .lang-flag {

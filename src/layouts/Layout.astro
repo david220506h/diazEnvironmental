@@ -92,6 +92,22 @@ const schema = JSON.stringify({
 </html>
 
 <style is:global>
+  /* Paleta de marca. Valores exactos ya usados en la página principal */
+  :root {
+    --color-green-950: #0b2e1a;
+    --color-green-900: #0f3d24;
+    --color-green-800: #154a2a;
+    --color-green-700: #1a5f36; /* verde principal */
+    --color-green-600: #2d7a4f;
+    --color-green-50: #f0f8f1;
+    --color-mint: #9fd3ae;      /* acento sobre fondos verdes oscuros */
+    --color-cream: #f4f1e6;     /* CTAs principales */
+    --color-gold: #f5c451;      /* estrellas */
+    --color-text: #333;
+    --color-text-muted: #666;
+    --color-surface: #f8f9fa;
+  }
+
   * {
     margin: 0;
     padding: 0;
@@ -132,11 +148,12 @@ const schema = JSON.stringify({
     color: inherit;
   }
 
+  /* Única definición de .container (antes duplicada en Project.css, que era la que ganaba con 2rem) */
   .container {
     width: 100%;
     max-width: 1200px;
     margin: 0 auto;
-    padding: 0 20px;
+    padding: 0 2rem;
   }
 
   .section-title {
@@ -155,13 +172,13 @@ const schema = JSON.stringify({
     transform: translateX(-50%);
     width: 60px;
     height: 4px;
-    background-color: #4d13d1;
+    background-color: var(--color-green-700);
   }
 
   .btn {
     display: inline-block;
     padding: 12px 28px;
-    background-color: #154a2a;
+    background-color: var(--color-green-800);
     color: white;
     border-radius: 5px;
     font-weight: 600;

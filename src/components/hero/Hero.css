@@ -6,11 +6,11 @@
 
 /* ===== ESTRUCTURA: split screen ===== */
 .hero {
-  --hero-green-900: #0b2e1a;
-  --hero-green-800: #0f3d24;
-  --hero-green-600: #1a5f36;
-  --hero-cream: #f4f1e6;
-  --hero-gold: #f5c451;
+  --hero-green-900: var(--color-green-950);
+  --hero-green-800: var(--color-green-900);
+  --hero-green-600: var(--color-green-700);
+  --hero-cream: var(--color-cream);
+  --hero-gold: var(--color-gold);
   --hero-gutter: max(24px, calc((100vw - 1200px) / 2 + 24px)); /* alinea con el logo del navbar */
   --hero-overlap: clamp(40px, 5.5vw, 96px); /* cuánto invade la tarjeta el panel verde */
 

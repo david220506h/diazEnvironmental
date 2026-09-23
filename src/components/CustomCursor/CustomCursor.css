@@ -13,7 +13,7 @@
 .cursor-dot {
   width: 6px;
   height: 6px;
-  background-color: #1a5f36;
+  background-color: var(--color-green-700);
   transition: opacity 0.2s ease;
 }
 

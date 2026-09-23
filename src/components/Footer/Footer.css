@@ -1,5 +1,7 @@
 .footer {
-    background-color: #333;
+    /* Continúa el verde de Contact; la línea superior separa ambas secciones */
+    background-color: var(--color-green-950);
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
     color: #fff;
     padding-top: 70px;
   }
@@ -26,7 +28,7 @@
     bottom: 0;
     width: 40px;
     height: 3px;
-    background-color: #e74c3c; /* Color principal - puedes cambiarlo */
+    background-color: var(--color-mint); /* acento de marca (antes rojo #e74c3c) */
   }
   
   .about p {
@@ -53,7 +55,7 @@
   }
   
   .social-icon:hover {
-    background-color: #e74c3c; /* Color principal - puedes cambiarlo */
+    background-color: var(--color-mint); /* acento de marca (antes rojo #e74c3c) */
     transform: translateY(-3px);
   }
   
@@ -106,17 +108,17 @@
   
   .contact-icon {
     margin-right: 15px;
-    color: #e74c3c; /* Color principal - puedes cambiarlo */
+    color: var(--color-mint); /* acento de marca (antes rojo #e74c3c) */
   }
   .contact-icons {
     margin-right: 16px;
-    color: #e74c3c; /* Color principal - puedes cambiarlo */
+    color: var(--color-mint); /* acento de marca (antes rojo #e74c3c) */
     width: 30px;
     height: 30px;
   }
   
   .footer-bottom {
-    background-color: #222;
+    background-color: rgba(0, 0, 0, 0.25); /* franja inferior más oscura sobre el verde */
     padding: 20px 0;
     text-align: center;
     font-size: 0.9rem;
