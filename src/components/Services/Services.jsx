@@ -13,7 +13,7 @@ import SoilExamination     from "../../assets/images/services/examenDeTierra.jpe
 import ConstructionPermits from "../../assets/images/services/installation.jpeg";
 import ConstructionPermits2 from "../../assets/images/services/installation2.png";
 import ConstructionPermits3 from "../../assets/images/services/installation3.png";
-import pseticInstallation  from "../../assets/images/services/permisos.jpeg";
+// permisos.jpeg retirada: mostraba el APN y la urbanización de un cliente (no usar sin su consentimiento)
 import pseticInstallation2  from "../../assets/images/services/permisos2.jpeg";
 import permisosPortada     from "../../assets/images/services/permisos-portada.png"; // portada de la tarjeta; la galería completa sigue en el modal
 import rendimiento    from "../../assets/images/services/rendimiento.jpeg";
@@ -183,7 +183,7 @@ const Services = () => {
         shortDescription: "We design any ADEQ-approved wastewater system and handle all permitting.",
         fullDescription: "Because we study the soil ourselves, we can recommend and design any of the ADEQ-approved onsite wastewater treatment systems. We can take care of all the permitting, so you can get to the building!",
         image: permisosPortada.src,
-        images: [pseticInstallation.src,pseticInstallation2.src],
+        images: [pseticInstallation2.src],
       },
       {
         title: "Septic System Installations",
@@ -220,7 +220,7 @@ const Services = () => {
         shortDescription: "Diseñamos cualquier sistema aprobado por ADEQ y gestionamos todos los permisos.",
         fullDescription: "Como estudiamos el suelo nosotros mismos, podemos recomendar y diseñar cualquier sistema de tratamiento de aguas residuales aprobado por ADEQ. Nos encargamos de todos los permisos.",
         image: permisosPortada.src,
-        images: [pseticInstallation.src, pseticInstallation2.src],
+        images: [pseticInstallation2.src],
       },
       {
 
