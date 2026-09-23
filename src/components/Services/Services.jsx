@@ -15,10 +15,20 @@ import ConstructionPermits2 from "../../assets/images/services/installation2.png
 import ConstructionPermits3 from "../../assets/images/services/installation3.png";
 import pseticInstallation  from "../../assets/images/services/permisos.jpeg";
 import pseticInstallation2  from "../../assets/images/services/permisos2.jpeg";
+import permisosPortada     from "../../assets/images/services/permisos-portada.png"; // portada de la tarjeta; la galería completa sigue en el modal
 import rendimiento    from "../../assets/images/services/rendimiento.jpeg";
 import rendimiento2       from "../../assets/images/services/rendimiento2.jpeg";
 
 const Icon = ({ icon: IconComponent }) => IconComponent ? <IconComponent /> : null;
+
+// Punto de interés de cada foto de tarjeta (object-fit: cover en un 4:3 recorta las fotos verticales)
+const IMAGE_POSITION = {
+  [SoilExamination.src]: "50% 75%",     // tamiz con suelo + tubo de prueba
+  [SepticSystem.src]: "50% 70%",        // regla y agua en el fondo del pozo
+  [rendimiento.src]: "50% 55%",         // boca del pozo con la cinta métrica
+  [permisosPortada.src]: "50% 50%",     // plano completo
+  [ConstructionPermits.src]: "50% 60%", // pozo con tubería y caja de distribución
+};
 
 const ServiceCard = ({ icon, title, shortDescription, image, onClick }) => {
   const tiltRef = useTilt();
@@ -32,7 +42,7 @@ const ServiceCard = ({ icon, title, shortDescription, image, onClick }) => {
       data-reveal
     >
       <div className="service-image">
-        <img src={image} alt={title} />
+        <img src={image} alt={title} style={{ objectPosition: IMAGE_POSITION[image] }} />
         <div className="service-icon"><Icon icon={icon} /></div>
       </div>
       <div className="service-content">
@@ -172,7 +182,7 @@ const Services = () => {
         title: "Conventional & Alternative Septic System Design Permits",
         shortDescription: "We design any ADEQ-approved wastewater system and handle all permitting.",
         fullDescription: "Because we study the soil ourselves, we can recommend and design any of the ADEQ-approved onsite wastewater treatment systems. We can take care of all the permitting, so you can get to the building!",
-        image: pseticInstallation.src,
+        image: permisosPortada.src,
         images: [pseticInstallation.src,pseticInstallation2.src],
       },
       {
@@ -209,7 +219,7 @@ const Services = () => {
         title: "Permisos de Diseño de Sistemas Sépticos",
         shortDescription: "Diseñamos cualquier sistema aprobado por ADEQ y gestionamos todos los permisos.",
         fullDescription: "Como estudiamos el suelo nosotros mismos, podemos recomendar y diseñar cualquier sistema de tratamiento de aguas residuales aprobado por ADEQ. Nos encargamos de todos los permisos.",
-        image: pseticInstallation.src,
+        image: permisosPortada.src,
         images: [pseticInstallation.src, pseticInstallation2.src],
       },
       {
