@@ -3,6 +3,8 @@ import "./Contact.css";
 import { initEmailJS, sendContactForm } from "../../Services/emailServices";
 import { useStore } from "@nanostores/react";
 import { languageStore } from "../../stores/language";
+import useMagnetic from "../../hooks/useMagnetic";
+import useScrollReveal from "../../hooks/useScrollReveal";
 
 const Contact = () => {
   const language = useStore(languageStore);
@@ -12,6 +14,9 @@ const Contact = () => {
     realEstateTransaction: "", newCustomer: "", message: "", receiveTexts: "yes",
   });
   const [formStatus, setFormStatus] = useState({ submitting: false, error: null, success: false });
+  const sectionRef = useRef(null);
+  const submitRef = useMagnetic({ strength: 0.25 });
+  useScrollReveal(sectionRef);
 
   useEffect(() => { initEmailJS("AO0cAoAusackQVfVJ"); }, []);
 
@@ -91,11 +96,11 @@ const Contact = () => {
   const tx = t[language] || t.en;
 
   return (
-    <section className="contact-section" id="contact">
+    <section className="contact-section" id="contact" ref={sectionRef}>
       <div className="contact-container">
         <div className="contact-header">
-          <p className="experience-text">{tx.tag}</p>
-          <h2 className="contact-title">{tx.title}</h2>
+          <p className="experience-text" data-reveal>{tx.tag}</p>
+          <h2 className="contact-title" data-reveal>{tx.title}</h2>
         </div>
 
         <form className="contact-form" onSubmit={handleSubmit}>
@@ -167,7 +172,7 @@ const Contact = () => {
           {formStatus.success && <div className="success-message"><p>{tx.success}</p></div>}
 
           <div className="form-actions">
-            <button type="submit" className="submit-btn" disabled={formStatus.submitting}>
+            <button type="submit" className="submit-btn" disabled={formStatus.submitting} ref={submitRef}>
               {formStatus.submitting ? tx.submitting : tx.submit}
             </button>
           </div>
