@@ -67,10 +67,10 @@
 }
 
 .lang-btn:hover {
-  background: rgba(155, 48, 138, 0.6);
-  border-color: #9b308a;
+  background:#2d7a4f;;
+  border-color:#266943;;
   transform: translateY(-4px);
-  box-shadow: 0 10px 30px rgba(155, 48, 138, 0.4);
+  box-shadow: 0 10px 30px #2d7a4f;;
 }
 
 .lang-flag {

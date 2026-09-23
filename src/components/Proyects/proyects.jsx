@@ -10,20 +10,43 @@ import project3 from "../../assets/images/projects/Project3.jpg";
 import project4 from "../../assets/images/projects/Project4.jpg";
 import project6 from "../../assets/images/projects/Project6.jpg";
 
+// Definido fuera del componente para evitar recrearlo en cada render
+const projectsData = {
+  en: [
+    { title: "Residential Septic System Installation", category: "Septic Systems", description: "Complete installation of a modern septic system for a newly constructed residence in Phoenix. Included percolation testing, system design, permitting, and installation.", image: project1.src },
+    { title: "Commercial Environmental Testing", category: "Environmental Testing", description: "Comprehensive soil and groundwater testing for a commercial development site in Scottsdale. Our report helped the client navigate regulatory requirements.", image: project2.src },
+    { title: "Emergency Septic System Repair", category: "Septic Systems", description: "Rapid response and repair of a failed septic system for a family in Mesa. We diagnosed the issue and completed repairs within 48 hours.", image: project3.src },
+    { title: "Multi-Property Septic Inspections", category: "Inspections", description: "Thorough septic system inspections for a real estate developer across multiple properties in Maricopa County.", image: project4.src },
+    { title: "Annual Maintenance Program", category: "Maintenance", description: "Ongoing maintenance program for a community of homes in Gilbert, providing regular inspections, pumping, and preventative maintenance.", image: project6.src },
+  ],
+  es: [
+    { title: "Instalación de Sistema Séptico Residencial", category: "Sistemas Sépticos", description: "Instalación completa de un sistema séptico moderno para una nueva residencia en Phoenix. Incluye pruebas de percolación, diseño del sistema y permisos.", image: project1.src },
+    { title: "Pruebas Ambientales Comerciales", category: "Pruebas Ambientales", description: "Pruebas integrales de suelo y agua subterránea para un sitio de desarrollo comercial en Scottsdale.", image: project2.src },
+    { title: "Reparación de Emergencia de Sistema Séptico", category: "Sistemas Sépticos", description: "Respuesta rápida y reparación de un sistema séptico fallido para una familia en Mesa. Diagnóstico y reparaciones completadas en 48 horas.", image: project3.src },
+    { title: "Inspecciones en Múltiples Propiedades", category: "Inspecciones", description: "Inspecciones exhaustivas de sistemas sépticos para un desarrollador inmobiliario en el Condado de Maricopa.", image: project4.src },
+    { title: "Programa de Mantenimiento Anual", category: "Mantenimiento", description: "Programa de mantenimiento continuo para una comunidad de hogares en Gilbert, con inspecciones regulares y mantenimiento preventivo.", image: project6.src },
+  ],
+};
+
 const useInView = (ref, options = {}) => {
   const [isInView, setIsInView] = useState(false);
   useEffect(() => {
     const currentRef = ref.current;
+    if (!currentRef) return;
     const observer = new IntersectionObserver(
       ([entry]) => {
-        if (options.once && isInView) return;
-        setIsInView(entry.isIntersecting);
+        if (entry.isIntersecting) {
+          setIsInView(true);
+          if (options.once) observer.unobserve(currentRef);
+        } else if (!options.once) {
+          setIsInView(false);
+        }
       },
       { threshold: 0.1, rootMargin: options.margin || "0px" }
     );
-    if (currentRef) observer.observe(currentRef);
-    return () => { if (currentRef) observer.unobserve(currentRef); };
-  }, [ref, options.once, options.margin, isInView]);
+    observer.observe(currentRef);
+    return () => observer.unobserve(currentRef);
+  }, [ref, options.once, options.margin]);
   return isInView;
 };
 
@@ -47,9 +70,8 @@ const Projects = () => {
   const carouselRef = useRef(null);
   const isInView = useInView(sectionRef, { once: true, margin: "-100px 0px" });
 
-  const [activeFilter, setActiveFilter] = useState("All");
-  const [allProjectsData, setAllProjectsData] = useState([]);
-  const [filteredProjects, setFilteredProjects] = useState([]);
+  // Clave interna estable. "all" no se traduce; solo su etiqueta visible.
+  const [activeFilter, setActiveFilter] = useState("all");
   const [currentIndex, setCurrentIndex] = useState(0);
   const [cardsToShow, setCardsToShow] = useState(3);
   const [isMobile, setIsMobile] = useState(false);
@@ -57,44 +79,25 @@ const Projects = () => {
   const [startX, setStartX] = useState(0);
   const [isDragging, setIsDragging] = useState(false);
 
-  const projectsData = {
-    en: [
-      { title: "Residential Septic System Installation", category: "Septic Systems", description: "Complete installation of a modern septic system for a newly constructed residence in Phoenix. Included percolation testing, system design, permitting, and installation.", image: project1.src },
-      { title: "Commercial Environmental Testing", category: "Environmental Testing", description: "Comprehensive soil and groundwater testing for a commercial development site in Scottsdale. Our report helped the client navigate regulatory requirements.", image: project2.src },
-      { title: "Emergency Septic System Repair", category: "Septic Systems", description: "Rapid response and repair of a failed septic system for a family in Mesa. We diagnosed the issue and completed repairs within 48 hours.", image: project3.src },
-      { title: "Multi-Property Septic Inspections", category: "Inspections", description: "Thorough septic system inspections for a real estate developer across multiple properties in Maricopa County.", image: project4.src },
-      { title: "Annual Maintenance Program", category: "Maintenance", description: "Ongoing maintenance program for a community of homes in Gilbert, providing regular inspections, pumping, and preventative maintenance.", image: project6.src },
-    ],
-    es: [
-      { title: "Instalación de Sistema Séptico Residencial", category: "Sistemas Sépticos", description: "Instalación completa de un sistema séptico moderno para una nueva residencia en Phoenix. Incluye pruebas de percolación, diseño del sistema y permisos.", image: project1.src },
-      { title: "Pruebas Ambientales Comerciales", category: "Pruebas Ambientales", description: "Pruebas integrales de suelo y agua subterránea para un sitio de desarrollo comercial en Scottsdale.", image: project2.src },
-      { title: "Reparación de Emergencia de Sistema Séptico", category: "Sistemas Sépticos", description: "Respuesta rápida y reparación de un sistema séptico fallido para una familia en Mesa. Diagnóstico y reparaciones completadas en 48 horas.", image: project3.src },
-      { title: "Inspecciones en Múltiples Propiedades", category: "Inspecciones", description: "Inspecciones exhaustivas de sistemas sépticos para un desarrollador inmobiliario en el Condado de Maricopa.", image: project4.src },
-      { title: "Programa de Mantenimiento Anual", category: "Mantenimiento", description: "Programa de mantenimiento continuo para una comunidad de hogares en Gilbert, con inspecciones regulares y mantenimiento preventivo.", image: project6.src },
-    ],
-  };
+  // Valores derivados (sin useState, sin condición de carrera)
+  const allLabel = language === "es" ? "Todos" : "All";
+  const allProjectsData = language === "es" ? projectsData.es : projectsData.en;
+  const filteredProjects = activeFilter === "all"
+    ? allProjectsData
+    : allProjectsData.filter(p => p.category === activeFilter);
+  const categories = ["all", ...new Set(allProjectsData.map(p => p.category))];
+  const displayLabel = (cat) => (cat === "all" ? allLabel : cat);
 
+  // Al cambiar idioma, reseteamos al filtro "all" y al primer slide
   useEffect(() => {
-    const data = language === "es" ? projectsData.es : projectsData.en;
-    setAllProjectsData(data);
-    setFilteredProjects(data);
-    setActiveFilter("All");
+    setActiveFilter("all");
     setCurrentIndex(0);
   }, [language]);
 
-  const allLabel = language === "es" ? "Todos" : "All";
-  const categories = allProjectsData.length > 0
-    ? [allLabel, ...new Set(allProjectsData.map(p => p.category))]
-    : [allLabel];
-
+  // Al cambiar filtro, regresar al primer slide
   useEffect(() => {
-    if (activeFilter === allLabel) {
-      setFilteredProjects(allProjectsData);
-    } else {
-      setFilteredProjects(allProjectsData.filter(p => p.category === activeFilter));
-    }
     setCurrentIndex(0);
-  }, [activeFilter, allProjectsData]);
+  }, [activeFilter]);
 
   useEffect(() => {
     const handleResize = () => {
@@ -122,7 +125,7 @@ const Projects = () => {
   };
 
   const handleTouchStart = (e) => { setStartX(e.touches[0].clientX); setIsDragging(true); };
-  const handleTouchMove = (e) => { if (!isDragging) return; e.preventDefault(); };
+  const handleTouchMove = (e) => { if (!isDragging) return; };
   const handleTouchEnd = (e) => {
     if (!isDragging) return;
     const diffX = startX - e.changedTouches[0].clientX;
@@ -155,13 +158,13 @@ const Projects = () => {
         </p>
 
         <div className="projects-filter">
-          {categories.map((category, index) => (
+          {categories.map((category) => (
             <button
-              key={index}
+              key={category}
               className={`filter-btn ${activeFilter === category ? "active" : ""}`}
               onClick={() => setActiveFilter(category)}
             >
-              {category}
+              {displayLabel(category)}
             </button>
           ))}
         </div>
