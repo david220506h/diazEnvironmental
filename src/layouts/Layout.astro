@@ -101,6 +101,10 @@ const schema = JSON.stringify({
 
   html, body {
     overflow-x: hidden;
+  }
+
+  /* Scroll suave nativo solo donde Lenis no está activo (landings SEO) */
+  html:not(.lenis) {
     scroll-behavior: smooth;
   }
 
