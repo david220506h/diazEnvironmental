@@ -1,0 +1,54 @@
+.cursor-dot,
+.cursor-ring {
+  position: fixed;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  z-index: 10001; /* por encima de modales (9999) y menú flotante (10000) */
+  border-radius: 50%;
+  opacity: 0;
+  will-change: transform;
+}
+
+.cursor-dot {
+  width: 6px;
+  height: 6px;
+  background-color: #1a5f36;
+  transition: opacity 0.2s ease;
+}
+
+.cursor-ring {
+  width: 36px;
+  height: 36px;
+  border: 1.5px solid rgba(26, 95, 54, 0.6);
+  background-color: rgba(26, 95, 54, 0);
+  transition:
+    width 0.3s ease,
+    height 0.3s ease,
+    background-color 0.3s ease,
+    border-color 0.3s ease,
+    opacity 0.2s ease;
+}
+
+.cursor-visible .cursor-dot,
+.cursor-visible .cursor-ring {
+  opacity: 1;
+}
+
+/* Sobre enlaces, botones y tarjetas */
+.cursor-hover .cursor-ring {
+  width: 60px;
+  height: 60px;
+  background-color: rgba(26, 95, 54, 0.12);
+  border-color: rgba(26, 95, 54, 0.35);
+}
+
+.cursor-hover .cursor-dot {
+  opacity: 0;
+}
+
+.cursor-down .cursor-ring {
+  width: 28px;
+  height: 28px;
+  background-color: rgba(26, 95, 54, 0.2);
+}
