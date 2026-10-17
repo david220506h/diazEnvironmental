@@ -1,0 +1,12 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Terms from "../components/Legal/Terms.jsx";
+---
+
+<Layout
+  title="Terms & Conditions | Diaz Environmental"
+  description="Terms and conditions for using the Diaz Environmental, LLC website and client portal."
+  canonical="https://diazenviroaz.com/terms"
+>
+  <Terms client:only="react" />
+</Layout>

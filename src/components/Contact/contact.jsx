@@ -165,7 +165,7 @@ const Contact = () => {
                 <label htmlFor="receiveTextsNo">{tx.agreeNo}</label>
               </div>
             </div>
-            <p className="privacy-link"><a href="#">{tx.privacy}</a></p>
+            <p className="privacy-link"><a href="/privacy-policy">{tx.privacy}</a></p>
           </div>
 
           {formStatus.error && <div className="error-message"><p>{formStatus.error}</p></div>}

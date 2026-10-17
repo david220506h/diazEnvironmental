@@ -72,8 +72,12 @@ const Footer = () => {
       </div>
 
       <div className="footer-bottom">
-        <div className="container">
+        <div className="container footer-bottom-inner">
           <p>© {new Date().getFullYear()} Diaz Environmental, LLC. {language === "es" ? "Todos los derechos reservados." : "All rights reserved."}</p>
+          <ul className="footer-legal-links">
+            <li><a href="/privacy-policy">{language === "es" ? "Política de Privacidad" : "Privacy Policy"}</a></li>
+            <li><a href="/terms">{language === "es" ? "Términos y Condiciones" : "Terms & Conditions"}</a></li>
+          </ul>
         </div>
       </div>
     </footer>
