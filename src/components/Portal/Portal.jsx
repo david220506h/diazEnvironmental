@@ -1,10 +1,8 @@
 import { useEffect, useState } from "react";
-import { useStore } from "@nanostores/react";
-import { languageStore } from "../../stores/language";
 import { supabase } from "../../lib/supabase";
 import Auth from "./Auth.jsx";
 import ResetPassword from "./ResetPassword.jsx";
-import "./Portal.css";
+import Dashboard from "./Dashboard.jsx";
 
 const REDIRECT_KEY = "portalRedirect";
 
@@ -20,7 +18,6 @@ const getRedirectTarget = () => {
 };
 
 const Portal = () => {
-  const language = useStore(languageStore);
   const [session, setSession] = useState(undefined);
   const [isRecovery, setIsRecovery] = useState(false);
 
@@ -65,11 +62,7 @@ const Portal = () => {
     return <Auth />;
   }
 
-  return (
-    <main className="portal-page">
-      <p>{language === "es" ? "Sesión iniciada." : "Signed in."}</p>
-    </main>
-  );
+  return <Dashboard session={session} />;
 };
 
 export default Portal;
