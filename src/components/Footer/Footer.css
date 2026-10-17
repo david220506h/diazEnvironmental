@@ -151,6 +151,29 @@
     display: flex;
     flex-direction: column;
   }
+
+  /* "Service Areas" está fuera de .footer-content en el JSX: le damos el mismo
+     ancho y margen que .container, y sus enlaces en columnas */
+  .footer > .footer-section.resources {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem 50px;
+  }
+
+  .footer-section.resources .footer-links {
+    columns: 4;
+    column-gap: 40px;
+  }
+
+  .footer-section.resources .footer-links li {
+    break-inside: avoid;
+  }
+
+  @media screen and (max-width: 768px) {
+    .footer-section.resources .footer-links {
+      columns: 2;
+    }
+  }
   
   
   /* Para asegurar que el mapa sea responsive */

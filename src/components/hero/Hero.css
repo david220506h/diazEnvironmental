@@ -1,9 +1,3 @@
-/* ⚠️ Regla global heredada: centra el texto de TODA la página principal.
-   Se conserva para no alterar otras secciones; revisar en el paso de pulido CSS. */
-* {
-  text-align: center;
-}
-
 /* ===== ESTRUCTURA: split screen ===== */
 .hero {
   --hero-green-900: var(--color-green-950);
