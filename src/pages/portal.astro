@@ -1,0 +1,11 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Portal from "../components/Portal/Portal.jsx";
+---
+
+<Layout
+  title="Client Portal | Diaz Environmental"
+  canonical="https://diazenviroaz.com/portal"
+>
+  <Portal client:only="react" />
+</Layout>
