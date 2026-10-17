@@ -1,0 +1,94 @@
+{
+  "colors": {
+    "green": {
+      "950": "#0b2e1a",
+      "900": "#0f3d24",
+      "800": "#154a2a",
+      "700": "#1a5f36",
+      "600": "#2d7a4f",
+      "50": "#f0f8f1"
+    },
+    "brand-vivid": "#006414",
+    "mint": "#9fd3ae",
+    "cream": "#f4f1e6",
+    "gold": "#f5c451",
+    "text": "#333333",
+    "text-muted": "#666666",
+    "surface": "#f8f9fa",
+    "focus-ring": "rgba(159, 211, 174, 0.35)",
+    "hero-bg": "#eef3ee"
+  },
+  "typography": {
+    "fontFamily": "'Poppins', sans-serif",
+    "fontWeights": [300, 400, 500, 600, 700],
+    "h1": {
+      "size": "clamp(2.3rem, 4.4vw, 4rem)",
+      "weight": 700,
+      "lineHeight": 1.08,
+      "letterSpacing": "-0.02em"
+    },
+    "h2_sectionTitle": {
+      "size": "2.5rem",
+      "weight": 700
+    },
+    "body_subtitle": {
+      "size": "clamp(1rem, 1.25vw, 1.15rem)",
+      "weight": 400,
+      "lineHeight": 1.7
+    }
+  },
+  "radii": {
+    "button_primary_global": "5px",
+    "button_hero_pill": "999px",
+    "card_hero": "28px",
+    "card_hero_mobile": "24px",
+    "testimonial_panel": "18px",
+    "input": "12px"
+  },
+  "shadows": {
+    "button_hover_global": "0 10px 20px rgba(0,0,0,0.1)",
+    "button_hero_primary": "0 12px 30px -8px rgba(0,0,0,0.45)",
+    "button_hero_primary_hover": "0 18px 40px -8px rgba(0,0,0,0.55)",
+    "hero_card": "0 40px 80px -24px rgba(11,46,26,0.55), 0 0 0 1px rgba(255,255,255,0.08)",
+    "input_focus": "0 0 0 3px rgba(159,211,174,0.35)"
+  },
+  "spacing": {
+    "containerMaxWidth": "1200px",
+    "containerPadding": "0 2rem",
+    "sectionPadding": "100px 0"
+  },
+  "buttons": {
+    "primary_global": {
+      "padding": "12px 28px",
+      "background": "var(--color-green-800)",
+      "color": "#ffffff",
+      "fontWeight": 600,
+      "borderRadius": "5px",
+      "hoverBackground": "#0d3019",
+      "hoverTransform": "translateY(-2px)"
+    },
+    "primary_hero": {
+      "padding": "17px 34px",
+      "background": "var(--color-cream)",
+      "color": "var(--color-green-900)",
+      "borderRadius": "999px",
+      "fontSize": "1.05rem",
+      "fontWeight": 600,
+      "hoverBackground": "#ffffff"
+    },
+    "secondary": null
+  },
+  "cards": {
+    "hero_card": {
+      "borderRadius": "28px",
+      "aspectRatio": "4 / 5",
+      "background": "var(--color-green-900)",
+      "boxShadow": "0 40px 80px -24px rgba(11,46,26,0.55), 0 0 0 1px rgba(255,255,255,0.08)"
+    }
+  },
+  "inputs": {
+    "borderRadius": "12px",
+    "focusBoxShadow": "0 0 0 3px rgba(159,211,174,0.35)",
+    "autofillBoxShadow": "0 0 0 1000px #174a2e inset"
+  }
+}
