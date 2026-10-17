@@ -1,0 +1,139 @@
+.request-page {
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 140px 2rem 6rem;
+  font-family: "Poppins", sans-serif;
+}
+
+.request-page h1 {
+  font-size: clamp(1.9rem, 4vw, 2.6rem);
+  font-weight: 700;
+  color: var(--color-green-900, #0f3d24);
+  margin-bottom: 0.5rem;
+}
+
+.request-intro {
+  color: var(--color-text-muted, #666);
+  margin-bottom: 2.5rem;
+  line-height: 1.6;
+}
+
+.request-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.request-form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.25rem;
+}
+
+@media screen and (max-width: 640px) {
+  .request-form-row {
+    grid-template-columns: 1fr;
+  }
+}
+
+.request-form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.request-form-group label {
+  font-weight: 600;
+  font-size: 0.95rem;
+  color: var(--color-text, #333);
+}
+
+.request-form-group input,
+.request-form-group select,
+.request-form-group textarea {
+  padding: 12px 16px;
+  border-radius: 12px;
+  border: 1px solid #d6ddd8;
+  font-size: 1rem;
+  font-family: inherit;
+  background: #fff;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.request-form-group input:focus,
+.request-form-group select:focus,
+.request-form-group textarea:focus {
+  outline: none;
+  border-color: var(--color-green-600, #2d7a4f);
+  box-shadow: 0 0 0 3px rgba(159, 211, 174, 0.35);
+}
+
+.request-honeypot {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.request-auth-gate {
+  background: var(--color-surface, #f8f9fa);
+  border: 1px dashed #c6d6cb;
+  border-radius: 12px;
+  padding: 24px;
+  text-align: center;
+  color: var(--color-text, #333);
+}
+
+.request-auth-gate p {
+  margin-bottom: 1rem;
+}
+
+.request-files {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.request-files-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.request-files-list li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: var(--color-surface, #f8f9fa);
+  border-radius: 8px;
+  padding: 8px 14px;
+  font-size: 0.9rem;
+}
+
+.request-files-list button {
+  background: none;
+  border: none;
+  color: #b23b3b;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.request-file-error {
+  color: #b23b3b;
+  font-size: 0.85rem;
+}
+
+.request-actions {
+  margin-top: 1rem;
+}
+
+.request-success {
+  background: #eef7ef;
+  border: 1px solid #bfe3c6;
+  color: var(--color-green-900, #0f3d24);
+  border-radius: 12px;
+  padding: 16px 20px;
+}

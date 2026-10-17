@@ -1,0 +1,11 @@
+---
+import Layout from "../layouts/Layout.astro";
+import RequestService from "../components/RequestService/RequestService.jsx";
+---
+
+<Layout
+  title="Request a Service | Diaz Environmental"
+  canonical="https://diazenviroaz.com/request-service"
+>
+  <RequestService client:only="react" />
+</Layout>
