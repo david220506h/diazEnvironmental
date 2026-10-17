@@ -82,3 +82,9 @@
   font-weight: 600;
   color: var(--color-green-700, #1a5f36);
 }
+
+@media screen and (max-width: 640px) {
+  .legal-page {
+    padding: 110px 1.25rem 4rem;
+  }
+}

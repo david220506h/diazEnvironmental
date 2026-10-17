@@ -91,6 +91,11 @@ const Navbar = () => {
               </button>
             )}
           </li>
+          <li className="nav-item portal-link-item">
+            <a href="/portal" className="portal-link" onClick={closeMobileMenu}>
+              {language === "es" ? "Portal de Clientes" : "Client Portal"}
+            </a>
+          </li>
         </ul>
       </div>
     </nav>

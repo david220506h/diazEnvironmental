@@ -3,12 +3,14 @@ interface Props {
   title?: string;
   description?: string;
   canonical?: string;
+  noindex?: boolean;
 }
 
 const {
   title = "Diaz Environmental LLC | Septic System Design & Testing Arizona",
   description = "ADEQ-certified septic system design, soil evaluation & percolation testing in Maricopa County, AZ. Fast 3-5 day turnaround. Hablamos español. Call (602) 812-8609.",
   canonical = "https://diazenviroaz.com",
+  noindex = false,
 } = Astro.props;
 
 const schema = JSON.stringify({
@@ -69,7 +71,7 @@ const schema = JSON.stringify({
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>{title}</title>
     <meta name="description" content={description} />
-    <meta name="robots" content="index, follow" />
+    <meta name="robots" content={noindex ? "noindex, nofollow" : "index, follow"} />
     <link rel="canonical" href={canonical} />
 
     <meta property="og:title" content={title} />

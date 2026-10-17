@@ -151,6 +151,32 @@
   box-shadow: 0 4px 12px rgba(26, 95, 54, 0.15);
 }
 
+/* ----- ENLACE DISCRETO AL PORTAL DE CLIENTES ----- */
+.nav-item.portal-link-item {
+  margin-left: 10px;
+}
+
+.nav-item.portal-link-item::after {
+  display: none;
+}
+
+.portal-link {
+  font-size: 0.78rem;
+  font-weight: 500;
+  color: var(--color-text-muted);
+  padding: 6px 12px;
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  border-radius: 999px;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: color 0.2s ease, border-color 0.2s ease;
+}
+
+.portal-link:hover {
+  color: var(--color-green-700);
+  border-color: var(--color-green-700);
+}
+
 .flag-img {
   width: 24px;
   height: 24px;

@@ -77,6 +77,7 @@ const Footer = () => {
           <ul className="footer-legal-links">
             <li><a href="/privacy-policy">{language === "es" ? "Política de Privacidad" : "Privacy Policy"}</a></li>
             <li><a href="/terms">{language === "es" ? "Términos y Condiciones" : "Terms & Conditions"}</a></li>
+            <li><a href="/portal">{language === "es" ? "Portal de Clientes" : "Client Portal"}</a></li>
           </ul>
         </div>
       </div>
