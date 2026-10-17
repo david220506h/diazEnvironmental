@@ -4,11 +4,13 @@ import { languageStore } from "../../stores/language";
 import { supabase } from "../../lib/supabase";
 import { arizonaCountyOptions } from "../../lib/arizonaCounties";
 import { serviceTypeOptions } from "../../lib/serviceTypes";
-import { MAX_FILES, MAX_FILE_SIZE_BYTES, isAllowedFile } from "../../lib/fileUpload";
+import { MAX_FILES, MAX_FILE_SIZE_BYTES, isAllowedFile, cleanFileName } from "../../lib/fileUpload";
+import { generateUuid } from "../../lib/uuid";
 import "./RequestService.css";
 
 const DRAFT_KEY = "requestServiceDraft";
 const REDIRECT_KEY = "portalRedirect";
+const BUCKET = "client-uploads";
 
 const emptyForm = {
   contactName: "",
@@ -42,10 +44,19 @@ const t = {
     signIn: "Sign in",
     submit: "SUBMIT REQUEST",
     submitting: "SUBMITTING…",
-    submitSoon: "File upload and submission will be enabled in the next step.",
+    retry: "RETRY SUBMISSION",
     fileTooBig: "is larger than 15 MB and was skipped.",
     fileBadType: "is not a PDF, JPG or PNG and was skipped.",
     fileLimit: "You can attach a maximum of 10 files.",
+    statusPending: "Pending",
+    statusUploading: "Uploading…",
+    statusDone: "Uploaded",
+    statusError: "Failed",
+    submitError: "Something went wrong submitting your request. Please retry.",
+    confirmTitle: "Request submitted",
+    confirmBody: "Thank you. We received your request and will contact you shortly.",
+    viewRequests: "View my requests",
+    backHome: "Back to home",
   },
   es: {
     title: "Solicitar un Servicio",
@@ -68,10 +79,19 @@ const t = {
     signIn: "Iniciar sesión",
     submit: "ENVIAR SOLICITUD",
     submitting: "ENVIANDO…",
-    submitSoon: "La subida de archivos y el envío se habilitarán en el siguiente paso.",
+    retry: "REINTENTAR ENVÍO",
     fileTooBig: "supera los 15 MB y no se agregó.",
     fileBadType: "no es PDF, JPG ni PNG y no se agregó.",
     fileLimit: "Puedes adjuntar un máximo de 10 archivos.",
+    statusPending: "Pendiente",
+    statusUploading: "Subiendo…",
+    statusDone: "Subido",
+    statusError: "Falló",
+    submitError: "Algo falló al enviar tu solicitud. Intenta de nuevo.",
+    confirmTitle: "Solicitud enviada",
+    confirmBody: "Gracias. Recibimos tu solicitud y te contactaremos pronto.",
+    viewRequests: "Ver mis solicitudes",
+    backHome: "Volver al inicio",
   },
 };
 
@@ -84,18 +104,21 @@ const RequestService = () => {
   const [session, setSession] = useState(undefined);
   const [formData, setFormData] = useState(emptyForm);
   const [honeypot, setHoneypot] = useState("");
-  const [files, setFiles] = useState([]);
+  const [fileStates, setFileStates] = useState([]);
   const [fileError, setFileError] = useState("");
-  const [status, setStatus] = useState({ submitting: false, message: "" });
+  const [phase, setPhase] = useState("form");
+  const [submitError, setSubmitError] = useState("");
+  const requestIdRef = useRef(null);
+  const requestRowCreatedRef = useRef(false);
   const restored = useRef(false);
   const fileInputRef = useRef(null);
 
   useEffect(() => {
     supabase.auth.getSession().then(({ data }) => setSession(data.session));
-    const { data: subscription } = supabase.auth.onAuthStateChange((_event, newSession) => {
+    const { data: authListener } = supabase.auth.onAuthStateChange((_event, newSession) => {
       setSession(newSession);
     });
-    return () => subscription.subscription.unsubscribe();
+    return () => authListener.subscription.unsubscribe();
   }, []);
 
   useEffect(() => {
@@ -110,12 +133,13 @@ const RequestService = () => {
   }, []);
 
   useEffect(() => {
+    if (phase === "done") return;
     try {
       localStorage.setItem(DRAFT_KEY, JSON.stringify(formData));
     } catch {
       /* ignorar si localStorage no está disponible (modo privado, etc.) */
     }
-  }, [formData]);
+  }, [formData, phase]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -137,7 +161,7 @@ const RequestService = () => {
     e.target.value = "";
     setFileError("");
 
-    const next = [...files];
+    const next = [...fileStates];
     for (const file of picked) {
       if (next.length >= MAX_FILES) {
         setFileError(tx.fileLimit);
@@ -148,20 +172,133 @@ const RequestService = () => {
         setFileError(`${file.name} ${reason}`);
         continue;
       }
-      next.push(file);
+      next.push({ file, status: "pending", path: null, error: null });
     }
-    setFiles(next);
+    setFileStates(next);
   };
 
   const handleRemoveFile = (index) => {
-    setFiles((prev) => prev.filter((_, i) => i !== index));
+    setFileStates((prev) => prev.filter((_, i) => i !== index));
+  };
+
+  const updateFileState = (index, patch) => {
+    setFileStates((prev) => prev.map((f, i) => (i === index ? { ...f, ...patch } : f)));
+  };
+
+  const ensureRequestRow = async () => {
+    if (requestRowCreatedRef.current) return requestIdRef.current;
+
+    if (!requestIdRef.current) requestIdRef.current = generateUuid();
+    const requestId = requestIdRef.current;
+
+    const { error } = await supabase.from("client_requests").upsert({
+      id: requestId,
+      client_id: session.user.id,
+      contact_name: formData.contactName,
+      phone: formData.phone,
+      address: formData.address,
+      apn: formData.apn,
+      county: formData.county,
+      service_type: formData.serviceType,
+      notes: formData.notes,
+    });
+
+    if (error) throw error;
+    requestRowCreatedRef.current = true;
+    return requestId;
+  };
+
+  const uploadFile = async (fileState, index, requestId) => {
+    updateFileState(index, { status: "uploading", error: null });
+
+    const path = `${session.user.id}/${requestId}/${generateUuid()}-${cleanFileName(fileState.file.name)}`;
+    const { error: uploadErr } = await supabase.storage.from(BUCKET).upload(path, fileState.file, {
+      upsert: false,
+      contentType: fileState.file.type,
+    });
+
+    if (uploadErr) {
+      updateFileState(index, { status: "error", error: uploadErr.message });
+      return false;
+    }
+
+    const { error: insertErr } = await supabase.from("client_request_files").insert({
+      request_id: requestId,
+      client_id: session.user.id,
+      file_path: path,
+      file_name: fileState.file.name,
+      mime_type: fileState.file.type,
+      size_bytes: fileState.file.size,
+    });
+
+    if (insertErr) {
+      updateFileState(index, { status: "error", error: insertErr.message });
+      return false;
+    }
+
+    updateFileState(index, { status: "done", path, error: null });
+    return true;
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (honeypot) return;
-    setStatus({ submitting: false, message: tx.submitSoon });
+    if (!session) return;
+
+    setSubmitError("");
+    setPhase("submitting");
+
+    try {
+      const requestId = await ensureRequestRow();
+
+      let allDone = true;
+      for (let i = 0; i < fileStates.length; i++) {
+        if (fileStates[i].status === "done") continue;
+        const ok = await uploadFile(fileStates[i], i, requestId);
+        if (!ok) allDone = false;
+      }
+
+      if (!allDone) {
+        setPhase("form");
+        setSubmitError(tx.submitError);
+        return;
+      }
+
+      const { error: statusErr } = await supabase
+        .from("client_requests")
+        .update({ status: "submitted", submitted_at: new Date().toISOString() })
+        .eq("id", requestId);
+
+      if (statusErr) throw statusErr;
+
+      try {
+        localStorage.removeItem(DRAFT_KEY);
+      } catch {
+        /* ignorar si localStorage no está disponible */
+      }
+      setPhase("done");
+    } catch (err) {
+      setPhase("form");
+      setSubmitError(err.message || tx.submitError);
+    }
   };
+
+  if (phase === "done") {
+    return (
+      <main className="request-page">
+        <div className="request-success">
+          <h1>{tx.confirmTitle}</h1>
+          <p>{tx.confirmBody}</p>
+          <p>
+            <a href="/portal" className="btn">{tx.viewRequests}</a>{" "}
+            <a href="/">{tx.backHome}</a>
+          </p>
+        </div>
+      </main>
+    );
+  }
+
+  const submitting = phase === "submitting";
 
   return (
     <main className="request-page">
@@ -234,25 +371,40 @@ const RequestService = () => {
               accept="application/pdf,image/jpeg,image/png"
               multiple
               onChange={handleFilesSelected}
+              disabled={submitting}
             />
             {fileError && <p className="request-file-error">{fileError}</p>}
 
-            {files.length > 0 && (
+            {fileStates.length > 0 && (
               <ul className="request-files-list">
-                {files.map((file, index) => (
-                  <li key={`${file.name}-${index}`}>
-                    <span>{file.name}</span>
-                    <button type="button" onClick={() => handleRemoveFile(index)}>{tx.removeFile}</button>
+                {fileStates.map((fs, index) => (
+                  <li key={`${fs.file.name}-${index}`} className={`is-${fs.status}`}>
+                    <div className="request-file-row">
+                      <span>{fs.file.name}</span>
+                      {fs.status === "pending" && !submitting && (
+                        <button type="button" onClick={() => handleRemoveFile(index)}>{tx.removeFile}</button>
+                      )}
+                      <span className="request-file-status">
+                        {fs.status === "pending" && tx.statusPending}
+                        {fs.status === "uploading" && tx.statusUploading}
+                        {fs.status === "done" && tx.statusDone}
+                        {fs.status === "error" && tx.statusError}
+                      </span>
+                    </div>
+                    <div className="request-progress-track">
+                      <div className={`request-progress-bar is-${fs.status}`} />
+                    </div>
+                    {fs.status === "error" && fs.error && <p className="request-file-error">{fs.error}</p>}
                   </li>
                 ))}
               </ul>
             )}
 
-            {status.message && <p className="request-file-error" style={{ color: "var(--color-green-700)" }}>{status.message}</p>}
+            {submitError && <p className="request-file-error">{submitError}</p>}
 
             <div className="request-actions">
-              <button type="submit" className="btn" disabled={status.submitting}>
-                {status.submitting ? tx.submitting : tx.submit}
+              <button type="submit" className="btn" disabled={submitting}>
+                {submitting ? tx.submitting : submitError ? tx.retry : tx.submit}
               </button>
             </div>
           </div>
