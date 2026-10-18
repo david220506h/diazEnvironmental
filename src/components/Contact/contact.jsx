@@ -14,6 +14,8 @@ const Contact = () => {
     realEstateTransaction: "", newCustomer: "", message: "", receiveTexts: "yes",
   });
   const [formStatus, setFormStatus] = useState({ submitting: false, error: null, success: false });
+  const [honeypot, setHoneypot] = useState("");
+  const mountedAtRef = useRef(Date.now());
   const sectionRef = useRef(null);
   const submitRef = useMagnetic({ strength: 0.25 });
   useScrollReveal(sectionRef);
@@ -27,6 +29,7 @@ const Contact = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if (honeypot || Date.now() - mountedAtRef.current < 2500) return;
     setFormStatus({ submitting: true, error: null, success: false });
     try {
       await sendContactForm(formData);
@@ -104,6 +107,17 @@ const Contact = () => {
         </div>
 
         <form className="contact-form" onSubmit={handleSubmit}>
+          <input
+            type="text"
+            name="company"
+            value={honeypot}
+            onChange={(e) => setHoneypot(e.target.value)}
+            className="contact-honeypot"
+            tabIndex={-1}
+            autoComplete="off"
+            aria-hidden="true"
+          />
+
           <div className="form-row">
             <div className="form-group">
               <label htmlFor="contact-firstName">{tx.firstName}</label>

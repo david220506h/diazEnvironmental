@@ -41,6 +41,15 @@
     gap: 1.1rem;
   }
 
+  .contact-honeypot {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    opacity: 0;
+    overflow: hidden;
+    pointer-events: none;
+  }
+
   .form-row {
     display: flex;
     gap: 1rem;
