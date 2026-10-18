@@ -134,10 +134,10 @@ const PrivacyPolicy = ({ publishDate }) => {
       <section className="legal-section">
         <h2>{isEs ? "5. Cuánto tiempo conservamos tus datos" : "5. How long we keep your data"}</h2>
         <p>
-          <Placeholder>{isEs ? "POLÍTICA DE RETENCIÓN DE DATOS PENDIENTE DE DEFINIR" : "DATA RETENTION PERIOD TO BE DEFINED"}</Placeholder>.{" "}
           {isEs
-            ? "Mientras se define, conservamos tus datos y documentos mientras tu cuenta esté activa o mientras sea necesario para cumplir obligaciones legales o de permisos."
-            : "Until defined, we retain your data and documents while your account remains active or as needed to meet legal or permitting obligations."}
+            ? "Conservamos las solicitudes y los archivos que nos envías por el portal solo durante el tiempo que dure el proceso de investigación, normalmente de uno a tres meses y en algunos casos más. Una vez concluido, los eliminamos de forma definitiva, salvo que la ley exija conservarlos por más tiempo. Puedes pedir que los eliminemos antes escribiendo a "
+            : "We keep the requests and files you send us through the portal only for as long as the investigation process lasts, usually one to three months and in some cases longer. Once it is complete, we permanently delete them, unless the law requires us to keep them longer. You may ask us to delete them sooner by writing to "}
+          <a href="mailto:septic@diazenviroaz.com">septic@diazenviroaz.com</a>.
         </p>
       </section>
 
