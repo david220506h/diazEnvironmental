@@ -90,5 +90,28 @@
     "borderRadius": "12px",
     "focusBoxShadow": "0 0 0 3px rgba(159,211,174,0.35)",
     "autofillBoxShadow": "0 0 0 1000px #174a2e inset"
+  },
+  "portal": {
+    "statusBadge": {
+      "draft": { "background": "#eef0ee", "color": "#666666" },
+      "submitted": { "background": "#e3effe", "color": "#1a5fa0" },
+      "in_review": { "background": "#fdf1d6", "color": "#8a6416" },
+      "converted": { "background": "#e4f3e7", "color": "var(--color-green-800)" },
+      "rejected": { "background": "#fbe4e4", "color": "#a33a3a" }
+    },
+    "feedback": {
+      "error": "#b23b3b",
+      "success": {
+        "background": "#eef7ef",
+        "border": "#bfe3c6",
+        "color": "var(--color-green-900)"
+      }
+    },
+    "legalDraftNotice": {
+      "background": "#fdf6e3",
+      "border": "#f0d78c",
+      "color": "#6b5416",
+      "strongColor": "#4a3a0f"
+    }
   }
 }
