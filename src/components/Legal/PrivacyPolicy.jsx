@@ -49,7 +49,11 @@ const PrivacyPolicy = ({ publishDate }) => {
         </p>
         <p>
           {isEs ? "Dirección postal: " : "Mailing address: "}
-          <Placeholder>{isEs ? "DIRECCIÓN LEGAL DE LA EMPRESA" : "COMPANY LEGAL ADDRESS"}</Placeholder>
+          {isEs
+            ? "Diaz Environmental LLC · Phoenix, Arizona, EE. UU. (operamos de forma remota y en campo; no atendemos al público en una oficina física)."
+            : "Diaz Environmental LLC · Phoenix, Arizona, USA (we operate remotely and in the field; we do not serve the public at a physical office)."}{" "}
+          {isEs ? "Para temas de privacidad, escríbenos a " : "For privacy matters, contact us at "}
+          <a href="mailto:septic@diazenviroaz.com">septic@diazenviroaz.com</a>.
         </p>
       </section>
 
