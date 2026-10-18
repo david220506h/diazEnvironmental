@@ -1,6 +1,8 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import Terms from "../components/Legal/Terms.jsx";
+
+const publishDate = new Date().toISOString();
 ---
 
 <Layout
@@ -8,5 +10,5 @@ import Terms from "../components/Legal/Terms.jsx";
   description="Terms and conditions for using the Diaz Environmental, LLC website and client portal."
   canonical="https://diazenviroaz.com/terms"
 >
-  <Terms client:only="react" />
+  <Terms publishDate={publishDate} client:only="react" />
 </Layout>

@@ -1,6 +1,8 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import PrivacyPolicy from "../components/Legal/PrivacyPolicy.jsx";
+
+const publishDate = new Date().toISOString();
 ---
 
 <Layout
@@ -8,5 +10,5 @@ import PrivacyPolicy from "../components/Legal/PrivacyPolicy.jsx";
   description="How Diaz Environmental, LLC collects, uses and protects your personal information, property data and documents."
   canonical="https://diazenviroaz.com/privacy-policy"
 >
-  <PrivacyPolicy client:only="react" />
+  <PrivacyPolicy publishDate={publishDate} client:only="react" />
 </Layout>

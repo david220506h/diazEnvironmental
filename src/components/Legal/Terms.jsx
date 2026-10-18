@@ -6,16 +6,21 @@ const Placeholder = ({ children }) => (
   <span className="legal-placeholder">[{children}]</span>
 );
 
-const Terms = () => {
+const Terms = ({ publishDate }) => {
   const language = useStore(languageStore);
   const isEs = language === "es";
+  const formattedDate = new Date(publishDate).toLocaleDateString(isEs ? "es-US" : "en-US", {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+  });
 
   return (
     <main className="legal-page">
       <h1>{isEs ? "Términos y Condiciones" : "Terms & Conditions"}</h1>
       <p className="legal-updated">
         {isEs ? "Última actualización: " : "Last updated: "}
-        <Placeholder>{isEs ? "FECHA DE PUBLICACIÓN" : "PUBLISH DATE"}</Placeholder>
+        {formattedDate}
       </p>
 
       <div className="legal-draft-notice">
