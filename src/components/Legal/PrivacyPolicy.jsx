@@ -2,10 +2,6 @@ import { useStore } from "@nanostores/react";
 import { languageStore } from "../../stores/language";
 import "./Legal.css";
 
-const Placeholder = ({ children }) => (
-  <span className="legal-placeholder">[{children}]</span>
-);
-
 const PrivacyPolicy = ({ publishDate }) => {
   const language = useStore(languageStore);
   const isEs = language === "es";
@@ -128,6 +124,11 @@ const PrivacyPolicy = ({ publishDate }) => {
           {isEs
             ? "No vendemos tu información personal. Podemos compartir datos limitados con autoridades del condado, ADEQ, o terceros que participen directamente en tu trámite (por ejemplo, un agente inmobiliario si así lo indicas), solo cuando sea necesario para prestar el servicio."
             : "We do not sell your personal information. We may share limited data with county authorities, ADEQ, or third parties directly involved in your case (for example, a real estate agent if you indicate one), only when necessary to provide the service."}
+        </p>
+        <p>
+          {isEs
+            ? "Los archivos que adjuntas no se comparten con terceros ni se venden. Solo los consulta el personal autorizado de Diaz Environmental LLC para atender tu solicitud, y se almacenan con nuestro proveedor de infraestructura (Supabase) únicamente para alojarlos. Solo podríamos divulgarlos si una ley o una orden legal lo exige."
+            : "The files you attach are not shared with third parties and are never sold. They are viewed only by authorized Diaz Environmental LLC personnel to handle your request, and are stored with our infrastructure provider (Supabase) solely for hosting. We would disclose them only if required by law or legal order."}
         </p>
       </section>
 

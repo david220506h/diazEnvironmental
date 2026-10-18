@@ -61,11 +61,6 @@
   margin-bottom: 0.75rem;
 }
 
-.legal-placeholder {
-  color: #b8860b;
-  font-weight: 600;
-}
-
 .legal-contact-block {
   background: var(--color-surface, #f8f9fa);
   border-radius: 12px;

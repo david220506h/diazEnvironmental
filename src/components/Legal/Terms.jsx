@@ -2,10 +2,6 @@ import { useStore } from "@nanostores/react";
 import { languageStore } from "../../stores/language";
 import "./Legal.css";
 
-const Placeholder = ({ children }) => (
-  <span className="legal-placeholder">[{children}]</span>
-);
-
 const Terms = ({ publishDate }) => {
   const language = useStore(languageStore);
   const isEs = language === "es";
@@ -107,10 +103,9 @@ const Terms = ({ publishDate }) => {
       <section className="legal-section">
         <h2>{isEs ? "5. Tarifas" : "5. Fees"}</h2>
         <p>
-          <Placeholder>{isEs ? "POLÍTICA DE TARIFAS Y COTIZACIÓN PENDIENTE DE CONFIRMAR" : "FEE AND QUOTING POLICY TO BE CONFIRMED"}</Placeholder>.{" "}
           {isEs
-            ? "Actualmente, el precio se cotiza directamente contigo después de revisar tu solicitud; llama al (602) 812-8609 para una cotización."
-            : "Currently, pricing is quoted to you directly after we review your request; call (602) 812-8609 for a quote."}
+            ? "Las cotizaciones se envían por correo electrónico. No publicamos tarifas en este sitio. Enviar una solicitud por el portal no constituye un contrato ni garantiza la prestación del servicio hasta que Diaz Environmental LLC lo confirme por escrito."
+            : "Quotes are sent by email. We do not publish rates on this website. Submitting a request through the portal does not create a contract or guarantee service until Diaz Environmental LLC confirms it in writing."}
         </p>
       </section>
 
@@ -126,7 +121,9 @@ const Terms = ({ publishDate }) => {
       <section className="legal-section">
         <h2>{isEs ? "7. Limitación de responsabilidad" : "7. Limitation of liability"}</h2>
         <p>
-          <Placeholder>{isEs ? "CLÁUSULA DE LIMITACIÓN DE RESPONSABILIDAD PENDIENTE DE REVISIÓN LEGAL" : "LIMITATION OF LIABILITY CLAUSE PENDING LEGAL REVIEW"}</Placeholder>.
+          {isEs
+            ? "Las condiciones del subsuelo cambian de un sitio a otro. Este reporte está sujeto a revisión a discreción del Investigador."
+            : "Subsurface conditions vary from site to site. This report is subject to review at the discretion of the Investigator."}
         </p>
       </section>
 
@@ -134,9 +131,8 @@ const Terms = ({ publishDate }) => {
         <h2>{isEs ? "8. Ley aplicable" : "8. Governing law"}</h2>
         <p>
           {isEs
-            ? "Estos términos se rigen por las leyes del Estado de "
-            : "These terms are governed by the laws of the State of "}
-          <Placeholder>{isEs ? "ESTADO/CONDADO A CONFIRMAR" : "STATE/COUNTY TO CONFIRM"}</Placeholder>, Arizona.
+            ? "Estos términos se rigen por las leyes del Estado de Arizona, EE. UU. Prestamos servicios en todos los condados de Arizona."
+            : "These terms are governed by the laws of the State of Arizona, USA. We provide services in all Arizona counties."}
         </p>
       </section>
 
