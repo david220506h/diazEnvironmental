@@ -1,5 +1,5 @@
 import { useRef, useEffect, useState, useCallback } from "react";
-import { FaTools, FaHome, FaWrench, FaWater, FaToilet, FaToolbox, FaTimes, FaChevronLeft, FaChevronRight } from "react-icons/fa";
+import { FaTimes, FaChevronLeft, FaChevronRight } from "react-icons/fa";
 import "./Services.css";
 import { useStore } from "@nanostores/react";
 import { languageStore } from "../../stores/language";
