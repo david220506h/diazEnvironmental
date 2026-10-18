@@ -131,7 +131,7 @@ const Hero = () => {
               <img
                 key={index}
                 src={item.src}
-                alt="Servicio de excavación"
+                alt={language === "es" ? "Servicio de excavación" : "Excavation service"}
                 className={"hero-slide" + (activeVideo === index ? " is-active" : "")}
                 fetchPriority="high"
               />
