@@ -78,13 +78,13 @@ const Navbar = () => {
           ))}
           <li className="nav-item cambio-idioma">
             {language === "es" && (
-              <button type="button" className="lang-switch" onClick={() => { languageStore.set("en"); localStorage.setItem("language", "en"); closeMobileMenu(); }}>
+              <button type="button" className="lang-switch" onClick={() => { languageStore.set("en"); localStorage.setItem("language", "en"); document.documentElement.lang = "en"; closeMobileMenu(); }}>
                 <img src="https://flagcdn.com/w40/us.png" alt="English" className="flag-img" />
                 <span className="lang-text">EN</span>
               </button>
             )}
             {language === "en" && (
-              <button type="button" className="lang-switch" onClick={() => { languageStore.set("es"); localStorage.setItem("language", "es"); closeMobileMenu(); }}>
+              <button type="button" className="lang-switch" onClick={() => { languageStore.set("es"); localStorage.setItem("language", "es"); document.documentElement.lang = "es"; closeMobileMenu(); }}>
                 <img src="https://flagcdn.com/w40/mx.png" alt="Español" className="flag-img" />
                 <span className="lang-text">ES</span>
               </button>

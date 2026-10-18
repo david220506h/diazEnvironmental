@@ -7,12 +7,18 @@ const LanguageModal = () => {
 
   useEffect(() => {
     const selected = localStorage.getItem("language");
-    if (!selected) setShow(true);
+    if (selected === "es" || selected === "en") {
+      languageStore.set(selected);
+      document.documentElement.lang = selected;
+    } else {
+      setShow(true);
+    }
   }, []);
 
   const selectLanguage = (lang) => {
     languageStore.set(lang);
     localStorage.setItem("language", lang);
+    document.documentElement.lang = lang;
     setShow(false);
   };
 
