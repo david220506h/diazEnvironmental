@@ -28,7 +28,7 @@ export const sendContactForm = async (formData) => {
     receiveTexts: formData.receiveTexts,
   };
 
-  const serviceId = "service_svwpfoh";
-  const templateId = "template_uavgdfm";
+  const serviceId = import.meta.env.PUBLIC_EMAILJS_SERVICE_ID;
+  const templateId = import.meta.env.PUBLIC_EMAILJS_TEMPLATE_ID;
   return await sendEmail(serviceId, templateId, templateParams);
 };

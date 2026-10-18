@@ -18,7 +18,7 @@ const Contact = () => {
   const submitRef = useMagnetic({ strength: 0.25 });
   useScrollReveal(sectionRef);
 
-  useEffect(() => { initEmailJS("AO0cAoAusackQVfVJ"); }, []);
+  useEffect(() => { initEmailJS(import.meta.env.PUBLIC_EMAILJS_PUBLIC_KEY); }, []);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
