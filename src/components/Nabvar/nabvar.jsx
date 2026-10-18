@@ -3,7 +3,6 @@ import { FaBars, FaTimes } from "react-icons/fa";
 import "./Navbar.css";
 import { useStore } from "@nanostores/react";
 import { languageStore } from "../../stores/language";
-import logo from "../../../public/logo.png";
 
 const Navbar = () => {
   const language = useStore(languageStore);
@@ -58,7 +57,7 @@ const Navbar = () => {
     <nav className={scrollNav ? "navbar active" : "navbar"}>
       <div className="navbar-container">
         <a href="#hero" className="navbar-logo" onClick={closeMobileMenu}>
-          <img src={logo.src} alt="Diaz Environmental LLC" className="logo" /> Diaz Environmental
+          <img src="/logo.png" alt="Diaz Environmental LLC" className="logo" /> Diaz Environmental
         </a>
 
         <div className="menu-icon" onClick={handleClick}>
