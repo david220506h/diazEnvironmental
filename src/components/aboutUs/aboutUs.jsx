@@ -14,7 +14,7 @@ const AboutUs = () => {
   return (
     <section className="about-section" ref={sectionRef}>
       <div className="about-header">
-        <h1 data-reveal>{language === "es" ? "¡Bienvenido a DiazEnvironmental!" : "Welcome To DiazEnvironmental!"}</h1>
+        <h2 data-reveal>{language === "es" ? "¡Bienvenido a DiazEnvironmental!" : "Welcome To DiazEnvironmental!"}</h2>
         <p className="intro-text" data-reveal>
           {language === "es"
             ? "Somos especialistas en servicios ambientales con enfoque en trabajo en equipo, ética y excelencia. Nuestras certificaciones y licencias especializadas nos posicionan de manera única en el campo ambiental y de gestión de residuos."

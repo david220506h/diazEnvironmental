@@ -12,7 +12,7 @@
   margin-bottom: 3rem;
 }
 
-.about-header h1 {
+.about-header h2 {
   /* fluido: "DiazEnvironmental!" es una sola palabra y a 2.5rem fijo se salía en celular */
   font-size: clamp(1.8rem, 7vw, 2.5rem);
   overflow-wrap: anywhere;

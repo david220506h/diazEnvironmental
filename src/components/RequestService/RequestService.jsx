@@ -362,10 +362,11 @@ const RequestService = () => {
 
         {session === undefined ? null : session ? (
           <div className="request-files">
-            <label>{tx.filesTitle}</label>
+            <label htmlFor="rs-files">{tx.filesTitle}</label>
             <p className="request-intro" style={{ marginBottom: 0 }}>{tx.filesHint}</p>
 
             <input
+              id="rs-files"
               ref={fileInputRef}
               type="file"
               accept="application/pdf,image/jpeg,image/png"
