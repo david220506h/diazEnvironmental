@@ -120,7 +120,9 @@ const PrivacyPolicy = ({ publishDate }) => {
           {isEs
             ? "Los datos del portal de clientes (solicitudes y archivos) se almacenan con nuestro proveedor de base de datos y almacenamiento, Supabase, en un bucket privado con acceso restringido únicamente a tu propia cuenta."
             : "Client portal data (requests and files) is stored with our database and storage provider, Supabase, in a private bucket restricted to your own account only."}{" "}
-          <Placeholder>{isEs ? "REGIÓN DE SERVIDORES DE SUPABASE" : "SUPABASE SERVER REGION"}</Placeholder>.
+          {isEs
+            ? "Los datos y archivos que envías se almacenan en servidores de nuestro proveedor de infraestructura, Supabase, ubicados en Estados Unidos (región AWS us-west-1, California del Norte)."
+            : "The data and files you submit are stored on servers operated by our infrastructure provider, Supabase, located in the United States (AWS region us-west-1, Northern California)."}
         </p>
         <p>
           {isEs
