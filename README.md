@@ -4,7 +4,7 @@ Sitio web corporativo de **Diaz Environmental LLC**, empresa de diseño de siste
 
 **Sitio en vivo:** [diazenviroaz.com](https://diazenviroaz.com)
 
-![Captura del sitio](public/screenshot.png)
+![Captura del sitio](public/Screenshot.png)
 
 ## Sobre el proyecto
 
