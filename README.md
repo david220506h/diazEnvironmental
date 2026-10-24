@@ -1,46 +1,43 @@
-# Astro Starter Kit: Basics
+# Diaz Environmental — Sitio web
 
-```sh
-npm create astro@latest -- --template basics
+Sitio web corporativo de **Diaz Environmental LLC**, empresa de diseño de sistemas sépticos y pruebas de suelo en Arizona, Estados Unidos.
+
+**Sitio en vivo:** [diazenviroaz.com](https://diazenviroaz.com)
+
+![Captura del sitio](public/screenshot.png)
+
+## Sobre el proyecto
+
+Proyecto desarrollado por encargo para un cliente real. El objetivo era tener presencia en línea, explicar los servicios de la empresa y facilitar que los clientes soliciten una inspección o cotización.
+
+## Funcionalidades
+
+- **Bilingüe (inglés / español)**, ya que la empresa atiende a clientes de habla inglesa e hispana.
+- **Páginas por zona de servicio** (Tonopah, Laveen, Queen Creek, condados de Pinal, Yavapai y La Paz, entre otras) para mejorar el posicionamiento en buscadores locales.
+- **Formulario de contacto** para captar clientes, con selección del tipo de servicio.
+- **Sección de servicios y portafolio de proyectos** filtrable por categoría.
+- Accesos rápidos de contacto: llamada, WhatsApp, correo y SMS.
+- Página de preguntas frecuentes.
+- Diseño adaptable a celular, tableta y escritorio.
+
+## Tecnologías
+
+- [Astro](https://astro.build)
+- React
+- TypeScript
+- HTML y CSS
+
+## Ejecutar en local
+
+```bash
+npm install
+npm run dev
 ```
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+El sitio queda disponible en `http://localhost:4321`.
 
-## 🚀 Project Structure
+## Autor
 
-Inside of your Astro project, you'll see the following folders and files:
-
-```text
-/
-├── public/
-│   └── favicon.svg
-├── src
-│   ├── assets
-│   │   └── astro.svg
-│   ├── components
-│   │   └── Welcome.astro
-│   ├── layouts
-│   │   └── Layout.astro
-│   └── pages
-│       └── index.astro
-└── package.json
-```
-
-To learn more about the folder structure of an Astro project, refer to [our guide on project structure](https://docs.astro.build/en/basics/project-structure/).
-
-## 🧞 Commands
-
-All commands are run from the root of the project, from a terminal:
-
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
-
-## 👀 Want to learn more?
-
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+**Ángel David Díaz Villanueva**
+Desarrollador Web y Móvil
+[GitHub](https://github.com/david220506h) · diazdavid2435@gmail.com
